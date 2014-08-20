@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="unisheduleApp">
+<head lang="ru">
+    <meta charset="UTF-8">
+    <title>SPbSTU Schedule</title>
+    <link rel="stylesheet" href="/app/css/unischedule.css"/>
+    <script src="/vendor/angularjs/angular.js"></script>
+    <script src="/app/js/faculty/controller.js"></script>
+</head>
+<body ng-controller="FacultyListCtrl">
+<h1>{{ title }}</h1>
+<ul>
+    <li ng-repeat="faculty in faculties">
+      {{faculty.faculty_name}}
+    </li>
+    <li ng-hide="faculties.length">Не удалось загрузить список институтов</li>
+  </ul>
+</body>
+</html>
