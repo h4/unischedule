@@ -5,8 +5,8 @@ unisheduleApp.controller('FacultyListCtrl', function($scope, $http) {
     $scope.title = "Список институтов";
 
     $http
-        .get('http://ruz.spbstu.ru/node/api/get_faculties')
+        .get('http://unishedule.h404.ru/api/get_faculties')
         .success(function(data) {
-            $scope.faculties = data;
+            $scope.faculties = data.faculties;
         });
 });
