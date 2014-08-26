@@ -4,21 +4,27 @@ unisheduleApp
     .controller('appCtrl', function ($scope, $location) {
         $scope.title = "Расписание";
 
+        $scope.navigate = function(path) {
+            $location.path(path);
+        };
+
         $scope.isActive = function (viewLocation) {
             return (viewLocation === $location.path());
         };
     })
-    .controller('teachersCtrl', function ($scope) {
-        $scope.title = 'Преподаватели';
-    })
-    .controller('roomsController', function ($scope) {
-        $scope.title = 'Аудитории';
-    })
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'pages/groups.html',
-                controller: 'appCtrl'
+                templateUrl: 'pages/faculties.html'
+            })
+            .when('/faculty/:id/chairs', {
+                templateUrl: 'pages/chairs.html'
+            })
+            .when('/chair/:id/groups', {
+                templateUrl: 'pages/groups.html'
+            })
+            .when('/schedule/:id', {
+                templateUrl: 'pages/schedule.html'
             })
             .when('/teachers', {
                 templateUrl: 'pages/teachers.html'

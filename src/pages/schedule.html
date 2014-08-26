@@ -1,0 +1,11 @@
+<div ng-controller="ScheduleCtrl">
+<h2>{{ title }}</h2>
+
+<div ng-repeat="day in schedule">
+    <h3>{{ days[day.weekday] }}</h3>
+    <div ng-repeat="lesson in day.lessons">
+        <h4>{{lesson.subject}}</h4>
+        <p>{{lesson.time_start}}&ndash;{{lesson.time_end}}</p>
+    </div>
+</div>
+</div>

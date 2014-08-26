@@ -1,6 +1,6 @@
-var unisheduleApp = angular.module('unisheduleApp', []);
+var unisheduleApp = angular.module('unisheduleApp');
 
-unisheduleApp.controller('FacultyListCtrl', function($scope, $http) {
+unisheduleApp.controller('FacultyCtrl', function($scope, $http) {
     $scope.faculties = [];
     $scope.title = "Список институтов";
 
