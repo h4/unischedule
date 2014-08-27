@@ -1,7 +1,7 @@
-<div ng-controller="FacultyCtrl">
-<h2>{{ title }}</h2>
-
-    <div ng-repeat="faculty in faculties">
-        <div ng-click="navigate('/faculty/'+ faculty.faculty_id + '/groups')">{{faculty.faculty_name}}</div>
+<div class="faculties" ng-controller="FacultyCtrl">
+    <div class="faculties__grid-item" ng-repeat="faculty in faculties">
+        <div class="faculty" ng-click="navigate('/faculty/'+ faculty.faculty_id + '/groups')">
+            <div class="faculty__title">{{faculty.faculty_name}}</div>
+        </div>
     </div>
 </div>

@@ -2,7 +2,7 @@ var unisheduleApp = angular.module('unisheduleApp', ['ngRoute', 'teachersModule'
 
 unisheduleApp
     .controller('appCtrl', function ($scope, $location) {
-        $scope.title = "Расписание";
+        $scope.title = "Санкт-Петерубргский государственный политехнический университет";
 
         $scope.navigate = function(path) {
             $location.path(path);

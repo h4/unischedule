@@ -3,24 +3,35 @@
 <head lang="ru">
     <meta charset="UTF-8">
     <title>SPbSTU Schedule</title>
+    <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
     <link rel="stylesheet" href="/app/css/unischedule.css"/>
-    <script src="/vendor/angular/angular.js"></script>
-    <script src="/vendor/angular-route/angular-route.js"></script>
-    <script src="/app/js/app.js"></script>
-    <script src="/app/js/faculty/facultyController.js"></script>
-    <script src="/app/js/chairs/chairsController.js"></script>
-    <script src="/app/js/groups/groupsController.js"></script>
-    <script src="/app/js/schedule/scheduleController.js"></script>
-    <script src="/app/js/teachers/teachersController.js"></script>
 </head>
 <body ng-controller="appCtrl">
-    <h1>{{ title }}</h1>
-    <div class="ng-view"></div>
+<header class="page-header" ng-click="navigate('/')">
+    <img class="logo" src="app/img/spbstu_logo.png" alt=""/>
 
-    <ul class="nav navbar-nav">
-      <li ng-class="{active: isActive('') }" ><a href="#" >Группы</a></li>
-      <li ng-class="{active: isActive('/teachers') }" ><a href="#teachers"  >Преподаватели</a></li>
-      <li ng-class="{active: isActive('/rooms') }" ><a href="#rooms" >Аудитории</a></li>
-    </ul>
+    <div class="page-header__title">{{ title }}</div>
+</header>
+<section class="page-content ng-view"></section>
+
+<footer class="page-footer">
+    <nav class="page-footer__nav">
+        <div class="page-footer__nav-item" ng-class="{active: isActive('/') }" ng-click="navigate('/')">Группы</div>
+        <div class="page-footer__nav-item" ng-class="{active: isActive('/teachers') }" ng-click="navigate('/teachers')">
+            Преподаватели
+        </div>
+        <div class="page-footer__nav-item" ng-class="{active: isActive('/rooms') }" ng-click="navigate('/rooms')">
+            Аудитории
+        </div>
+    </nav>
+</footer>
+
+<script src="/vendor/angular/angular.js"></script>
+<script src="/vendor/angular-route/angular-route.js"></script>
+<script src="/app/js/app.js"></script>
+<script src="/app/js/faculty/facultyController.js"></script>
+<script src="/app/js/groups/groupsController.js"></script>
+<script src="/app/js/schedule/scheduleController.js"></script>
+<script src="/app/js/teachers/teachersController.js"></script>
 </body>
 </html>
