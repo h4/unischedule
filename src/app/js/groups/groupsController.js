@@ -1,6 +1,6 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
-unisheduleApp.controller('GroupsCtrl', function($scope, $http, $routeParams) {
+unisheduleApp.controller('GroupsCtrl', function($scope, $rootScope, $http, $routeParams) {
     $scope.groups = [];
     $scope.faculty = {};
     $scope.levels = [{
@@ -27,7 +27,7 @@ unisheduleApp.controller('GroupsCtrl', function($scope, $http, $routeParams) {
     $http
         .get('http://unishedule.h404.ru/api/get_groups?chair_id=' + $routeParams.id)
         .success(function(data) {
-            $scope.faculty = data.faculty;
+            $rootScope.subtitle = data.faculty.faculty_name + " – " + "Список групп";
             data.groups
                 .sort(function(prev, curr) {
                     if (prev.group_name > curr.group_name) {

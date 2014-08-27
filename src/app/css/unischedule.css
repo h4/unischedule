@@ -5,7 +5,7 @@
 body {
     font: 200 16px 'Fira Sans';
     margin: 0;
-    padding: 0;
+    padding: 0 0 1px;
     color: #404040;
     background: #f9f9f9;
 }
@@ -15,6 +15,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 2;
     height: 60px;
     padding: 10px 20px;
     background: #009688;
@@ -23,12 +24,24 @@ body {
     box-shadow: 0 2px 2px #00695c;
 }
 
+.page-subheader {
+    font-size: 14px;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: 4px 130px;
+    background: #bdbdbd;
+}
+
 .logo {
     height: 80px;
     width: 80px;
     float: left;
     position: relative;
     top: 10px;
+    z-index: 100;
     background: #e0f2f1;
     border: solid 2px #009688;
     border-radius: 50%;
@@ -85,6 +98,7 @@ body {
 
 .page-content {
     margin: 100px;
+    overflow: hidden;
 }
 
 .faculties {
@@ -116,4 +130,34 @@ body {
     height: 100px;
     padding: 16px;
     background: rgba(255, 255, 255, .7);
+}
+
+.groups {
+    display: table;
+    width: 100%;
+    margin: 20px;
+}
+
+.groups__level {
+    display: table-cell;
+    padding-right: 20px;
+}
+
+.groups__level-title {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    padding: 4px 10px;
+}
+
+.group {
+    margin-bottom: 14px;
+    padding-bottom: 4px;
+    background: #e0f2f1;
+}
+
+.group__title {
+    width: 60%;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, .5);
 }

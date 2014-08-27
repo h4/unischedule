@@ -1,11 +1,8 @@
-<div ng-controller="GroupsCtrl">
-
-<h2>{{ faculty.faculty_name }} {{ title }}</h2>
-
-<div ng-repeat="level in levels">
-    <div>{{ level.title }}</div>
-    <div ng-repeat="group in level.groups">
-        <div ng-click="navigate('/schedule/' + group.group_id)">{{group.group_name}}</div>
+<div class="groups" ng-controller="GroupsCtrl">
+    <div class="groups__level" ng-repeat="level in levels">
+        <div class="groups__level-title">{{ level.title }}</div>
+        <div class="group" ng-repeat="group in level.groups" ng-click="navigate('/schedule/' + group.group_id)">
+            <div class="group__title">{{group.group_name}}</div>
+        </div>
     </div>
-</div>
 </div>
