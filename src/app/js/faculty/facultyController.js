@@ -1,8 +1,8 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
-unisheduleApp.controller('FacultyCtrl', function($scope, $http) {
+unisheduleApp.controller('FacultyCtrl', function($scope, $rootScope, $http) {
     $scope.faculties = [];
-    $scope.title = "Список институтов";
+    $rootScope.subtitle = "";
 
     $http
         .get('http://unishedule.h404.ru/api/get_faculties')
