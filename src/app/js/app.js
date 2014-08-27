@@ -17,10 +17,7 @@ unisheduleApp
             .when('/', {
                 templateUrl: 'pages/faculties.html'
             })
-            .when('/faculty/:id/chairs', {
-                templateUrl: 'pages/chairs.html'
-            })
-            .when('/chair/:id/groups', {
+            .when('/faculty/:id/groups', {
                 templateUrl: 'pages/groups.html'
             })
             .when('/schedule/:id', {
@@ -35,6 +32,4 @@ unisheduleApp
             .otherwise({
                 redirectTo: '/'
             });
-
     });
-;
