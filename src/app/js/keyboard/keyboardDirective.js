@@ -25,11 +25,11 @@ unisheduleApp
                 };
 
                 this.hide = function() {
-                    $animate.addClass($element, 'ng-hide');
+                    $animate.addClass($element, 'keyboard_hidden');
                 };
 
                 this.show = function() {
-                    $animate.removeClass($element, 'ng-hide');
+                    $animate.removeClass($element, 'keyboard_hidden');
                 };
 
                 $scope.rows = rows.map(function (row) {

@@ -9,6 +9,10 @@
     border-top: solid 1px #FFF;
 }
 
+.keyboard_hidden {
+    display: none;
+}
+
 .keyboard__row {
     margin: 16px;
     text-align: center;
