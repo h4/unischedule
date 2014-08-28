@@ -1,12 +1,22 @@
-var unisheduleApp = angular.module('unisheduleApp', ['ngRoute', 'teachersModule']);
+var unisheduleApp = angular.module('unisheduleApp', ['ngRoute', 'ngAnimate', 'teachersModule']);
 
 unisheduleApp
     .controller('appCtrl', function ($scope, $location) {
         $scope.title = "Санкт-Петерубргский государственный политехнический университет";
 
-        $scope.navigate = function(path) {
+        $scope.navigate = function (path) {
             $location.path(path);
         };
+
+        $scope.searchString = "";
+
+        $scope.$on('addSymbol', function (e, symbol) {
+            $scope.searchString += symbol;
+        });
+
+        $scope.$on('removeSymbol', function () {
+            $scope.searchString = $scope.searchString.slice(0, -1);
+        });
 
         $scope.isActive = function (viewLocation) {
             return (viewLocation === $location.path());

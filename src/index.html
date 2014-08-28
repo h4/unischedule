@@ -5,14 +5,18 @@
     <title>SPbSTU Schedule</title>
     <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
     <link rel="stylesheet" href="/app/css/unischedule.css"/>
+    <link rel="stylesheet" href="/app/js/keyboard/keyboard.css"/>
 </head>
 <body ng-controller="appCtrl">
 <header class="page-header" ng-click="navigate('/')">
     <img class="logo" src="app/img/spbstu_logo.png" alt=""/>
 
     <div class="page-header__title">{{ title }}</div>
+    <div>{{ searchString }}</div>
 </header>
 <section class="page-subheader" ng-show="subtitle">{{ subtitle }}</section>
+
+
 <section class="page-content ng-view"></section>
 
 <footer class="page-footer">
@@ -27,12 +31,16 @@
     </nav>
 </footer>
 
+<keyboard class="keyboard" ng-hide="keyboardIsHidden"></keyboard>
+
 <script src="/vendor/angular/angular.js"></script>
 <script src="/vendor/angular-route/angular-route.js"></script>
+<script src="/vendor/angular-animate/angular-animate.js"></script>
 <script src="/app/js/app.js"></script>
 <script src="/app/js/faculty/facultyController.js"></script>
 <script src="/app/js/groups/groupsController.js"></script>
 <script src="/app/js/schedule/scheduleController.js"></script>
 <script src="/app/js/teachers/teachersController.js"></script>
+<script src="/app/js/keyboard/keyboardDirective.js"></script>
 </body>
 </html>
