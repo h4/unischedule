@@ -97,8 +97,16 @@ body {
 }
 
 .page-content {
+    position: relative;
     margin: 100px;
+}
+
+.page-content::after {
+    content: "";
+    display: block;
+    height: 0;
     overflow: hidden;
+    clear: both;
 }
 
 .faculties {
@@ -160,4 +168,98 @@ body {
     width: 60%;
     padding: 8px 10px;
     background: rgba(255, 255, 255, .5);
+}
+
+.time-column {
+    font-size: 13px;
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    right: 100%;
+    margin-right: 8px;
+    text-align: right;
+    color: #999;
+}
+
+.time {
+    display: block;
+    height: 20%;
+}
+
+.schedule {
+    display: table;
+    width: 100%;
+}
+
+.schedule__day {
+    display: table-cell;
+}
+
+.day-name {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 6px;
+    padding: 4px 10px;
+    text-align: center;
+}
+
+.lessons {
+    position: relative;
+    height: 800px;
+}
+
+.lesson {
+    position: absolute;
+    left: 0;
+    right: 8px;
+    height: 152px;
+    padding: 16px;
+    overflow: hidden;
+    background: #e0f2f1;
+    border-radius: 2px;
+}
+
+.lesson_start_1 {
+    top: 0;
+}
+
+.lesson_start_2 {
+    top: 160px;
+}
+
+.lesson_start_3 {
+    top: 320px;
+}
+
+.lesson_start_4 {
+    top: 480px;
+}
+
+.lesson_start_5 {
+    top: 640px;
+}
+
+.lesson__subject {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.lesson__type {
+    font-size: 12px;
+}
+
+.lesson__footer {
+    font-size: 13px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, .5);
+}
+
+.lesson__auditories {
+    text-align: right;
 }

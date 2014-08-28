@@ -20,7 +20,16 @@ unisheduleApp.controller('ScheduleCtrl', function ($scope, $rootScope, $http, $r
     $http
         .get('http://unishedule.h404.ru/api/get_schedule?group_id=' + $routeParams.id)
         .success(function (data) {
-            $scope.schedule = data.days;
+            $scope.schedule = data.days
+                .map(function(day) {
+                    day.lessons.forEach(function(lesson) {
+                        lesson.startPosition = (lesson.time_start.split(":")[0] - 8) / 2 + 1;
+                        lesson.className = 'lesson_start_' + lesson.startPosition;
+                    });
+
+                    return day;
+                });
             $rootScope.subtitle = $scope.title + ' ' + data.group_name;
+            $scope.colWidth = Math.ceil((1 / data.days.length) * 100);
         });
 });

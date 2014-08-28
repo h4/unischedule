@@ -1,17 +1,31 @@
-<div ng-controller="ScheduleCtrl">
-    <div ng-repeat="day in schedule">
-        <h3>{{ days[day.weekday] }}</h3>
+<div class="schedule" ng-controller="ScheduleCtrl">
+    <div class="time-column">
+        <time class="time">8:00</time>
+        <time class="time">10:00</time>
+        <time class="time">12:00</time>
+        <time class="time">14:00</time>
+        <time class="time">16:00</time>
+    </div>
 
-        <div ng-repeat="lesson in day.lessons">
-            <h4>{{lesson.subject}}</h4>
+    <div class="schedule__day" ng-repeat="day in schedule"
+            style="width: {{ colWidth }}%;">
+        <h3 class="day-name">{{ days[day.weekday] }}</h3>
 
-            <div>{{ lessonTypes[lesson.type] }}</div>
+        <div class="lessons">
+            <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className">
+                <h4 class="lesson__subject">{{lesson.subject}}</h4>
 
-            <div ng-repeat="teacher in lesson.teachers">{{teacher.teacher_name}}</div>
+                <div class="lesson__type">{{ lessonTypes[lesson.type] }}</div>
 
-            <div ng-repeat="auditory in lesson.auditories">{{auditory.auditory_name}}</div>
+                <footer class="lesson__footer">
+                    <div ng-repeat="teacher in lesson.teachers">{{teacher.teacher_name}}</div>
+                    <div ng-show="lesson.teachers.length == 0">&nbsp;</div>
 
-            <p>{{lesson.time_start}}&ndash;{{lesson.time_end}}</p>
+                    <div class="lesson__auditories">
+                        <span ng-repeat="auditory in lesson.auditories">{{auditory.auditory_name}}<span ng-hide="$last">, </span></span>
+                    </div>
+                </footer>
+            </div>
         </div>
     </div>
 </div>
