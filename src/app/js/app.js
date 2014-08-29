@@ -1,4 +1,4 @@
-var unisheduleApp = angular.module('unisheduleApp', ['ngRoute', 'ngAnimate', 'teachersModule']);
+var unisheduleApp = angular.module('unisheduleApp', ['ngRoute', 'ngAnimate']);
 
 unisheduleApp
     .controller('appCtrl', function ($scope, $location) {

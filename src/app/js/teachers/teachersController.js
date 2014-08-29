@@ -1,8 +1,6 @@
-var teachers = angular.module('teachersModule', []);
+var unisheduleApp = angular.module('unisheduleApp');
 
-teachers.controller('teachersController', function($scope) {
+unisheduleApp.controller('teachersController', function($scope) {
     $scope.teachers = [];
     $scope.title = "Список преподавателей";
 });
-
-var injector = angular.injector(['ng', 'teachersModule']);
