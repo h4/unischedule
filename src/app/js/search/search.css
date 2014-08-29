@@ -37,3 +37,25 @@
     border-radius: 0 3px 3px 0;
     cursor: pointer;
 }
+
+.search__results {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.search__result-header {
+    font-weight: 200;
+    margin-left: 10px;
+}
+
+.search__result {
+    margin-bottom: 14px;
+    padding-bottom: 4px;
+    background: #e0f2f1;
+}
+
+.search__result-title {
+    width: 60%;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, .5);
+}

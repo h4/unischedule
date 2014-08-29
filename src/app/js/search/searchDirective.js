@@ -1,34 +1,49 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp
-    .directive('search', function() {
+    .directive('search', ['$rootScope', function($rootScope) {
         return {
             restrict: 'E',
-            controller: function($rootScope, $element, $attrs, $transclude, $location) {
-                $rootScope.searchString = "";
+            controller: function($scope, $element, $attrs, $transclude, $location) {
+                if ('restore' in $attrs) {
+                    $scope.searchString = $location.search().q || "";
+                } else {
+                    $scope.searchString = "";
+                }
 
-                $rootScope.dispatchFocused = function() {
+                $scope.dispatchFocused = function() {
                     $rootScope.$broadcast('searchFocus');
                 };
 
-                $rootScope.submitSearch = function() {
-                    if ($rootScope.searchString) {
+                $scope.submitSearch = function() {
+                    if ($scope.searchString) {
                         $rootScope.$broadcast('hideKeyboard');
                         $location.path('/search').search({
                             kind: $element.attr('kind'),
-                            q: $rootScope.searchString
+                            q: $scope.searchString
                         });
                     }
                 };
 
-                $rootScope.$on('addSymbol', function (e, symbol) {
-                    $rootScope.searchString += symbol;
-                });
+                $scope.listeners = [];
 
-                $rootScope.$on('removeSymbol', function () {
-                    $rootScope.searchString = $rootScope.searchString.slice(0, -1);
+                $scope.listeners.push($rootScope.$on('addSymbol', function (e, symbol) {
+                    $scope.searchString += symbol;
+                }));
+
+                $scope.listeners.push($rootScope.$on('removeSymbol', function () {
+                    $scope.searchString = $scope.searchString.slice(0, -1);
+                }));
+            },
+            link: function(scope, element, attrs) {
+                scope.$on('$destroy', function() {
+                    scope.listeners.forEach(function(fn) {
+                        fn();
+                    });
+
+                    scope.listeners = [];
                 });
             },
             templateUrl: 'app/js/search/search.tpl.html'
         }
-    });
+    }]);
