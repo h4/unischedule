@@ -4,6 +4,7 @@ unisheduleApp.controller('SearchCtrl', function($scope, $rootScope, $http, $loca
     $scope.results = [];
     $rootScope.kind = $location.search().kind;
     $rootScope.subtitle = "";
+    $rootScope.tabLocation = '/';
 
     $http
         .get('http://unishedule.h404.ru/api/search?q=' + $location.search.q)

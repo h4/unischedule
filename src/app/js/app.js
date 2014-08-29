@@ -9,7 +9,7 @@ unisheduleApp
         };
 
         $scope.isActive = function (viewLocation) {
-            return (viewLocation === $location.path());
+            return (viewLocation === $scope.tabLocation);
         };
     })
     .config(function ($routeProvider) {

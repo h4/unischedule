@@ -1,6 +1,7 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp.controller('ScheduleCtrl', function ($scope, $rootScope, $http, $routeParams) {
+    $rootScope.tabLocation = '/';
     $scope.schedule = [];
     $scope.title = "Расписание группы";
     $scope.days = [

@@ -1,6 +1,7 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp.controller('GroupsCtrl', function($scope, $rootScope, $http, $routeParams) {
+    $rootScope.tabLocation = '/';
     $scope.groups = [];
     $scope.faculty = {};
     $scope.levels = [{
