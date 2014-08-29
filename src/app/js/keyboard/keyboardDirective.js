@@ -13,16 +13,20 @@ unisheduleApp
 
         return {
             restrict: 'E',
-            controller: function ($scope, $element, $animate) {
+            controller: function ($rootScope, $element, $animate) {
                 var that = this;
 
-                $scope.fire = function(val) {
+                $rootScope.fire = function(val) {
                     if (val != deleteSymbol) {
-                        $scope.$emit('addSymbol', val);
+                        $rootScope.$emit('addSymbol', val);
                     } else {
-                        $scope.$emit('removeSymbol');
+                        $rootScope.$emit('removeSymbol');
                     }
                 };
+
+                $element.find('span').on('click', function() {
+                    this.hide();
+                }.bind(this));
 
                 this.hide = function() {
                     $animate.addClass($element, 'keyboard_hidden');
@@ -32,7 +36,7 @@ unisheduleApp
                     $animate.removeClass($element, 'keyboard_hidden');
                 };
 
-                $scope.rows = rows.map(function (row) {
+                $rootScope.rows = rows.map(function (row) {
                     var buttons = [];
 
                     while (row.length) {
@@ -43,11 +47,14 @@ unisheduleApp
                     return buttons;
                 });
 
-                $scope.$on('searchFocus', function(e) {
+                $rootScope.$on('searchFocus', function(e) {
                     that.show();
                 });
+
+                $rootScope.$on('hideKeyboard', function(e) {
+                    that.hide();
+                });
             },
-            scope: {},
             templateUrl: 'app/js/keyboard/keyboard.tpl.html'
         }
     })

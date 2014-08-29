@@ -8,16 +8,6 @@ unisheduleApp
             $location.path(path);
         };
 
-        $scope.searchString = "";
-
-        $scope.$on('addSymbol', function (e, symbol) {
-            $scope.searchString += symbol;
-        });
-
-        $scope.$on('removeSymbol', function () {
-            $scope.searchString = $scope.searchString.slice(0, -1);
-        });
-
         $scope.isActive = function (viewLocation) {
             return (viewLocation === $location.path());
         };
@@ -38,6 +28,9 @@ unisheduleApp
             })
             .when('/rooms', {
                 templateUrl: 'pages/rooms.html'
+            })
+            .when('/search', {
+                templateUrl: 'pages/search.html'
             })
             .otherwise({
                 redirectTo: '/'
