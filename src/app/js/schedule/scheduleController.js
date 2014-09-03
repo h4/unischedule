@@ -20,6 +20,16 @@ unisheduleApp.controller('ScheduleCtrl',
                 'Экзамен'
             ];
 
+            function transformDate(str) {
+                // todo: вынести в какой-то внешний сервис
+                var parts = str.split('-');
+                return parts[2] + '.' + parts[1] + '.' + parts[0];
+            }
+
+            function getWeekType(week) {
+                return week.is_odd ? 'чётная неделя' : 'нечётная неделя';
+            }
+
             $http
                 .get(APIUrls.getUrl("schedule", $routeParams.id))
                 .success(function (data) {
@@ -32,7 +42,10 @@ unisheduleApp.controller('ScheduleCtrl',
 
                             return day;
                         });
-                    $rootScope.subtitle = $scope.title + ' ' + data.group.name;
+                    $rootScope.subtitle = $scope.title + ' ' + data.group.name +
+                        ' на неделю с ' + transformDate(data.week.date_start) +
+                        ' по ' + transformDate(data.week.date_start) +
+                        ' (' + getWeekType(data.week) + ')';
                     $scope.colWidth = Math.ceil((1 / data.days.length) * 100);
                 });
         }]);
