@@ -18,11 +18,11 @@
                 <div class="lesson__type">{{ lessonTypes[lesson.type] }}</div>
 
                 <footer class="lesson__footer">
-                    <div ng-repeat="teacher in lesson.teachers">{{teacher.teacher_name}}</div>
+                    <div ng-repeat="teacher in lesson.teachers">{{teacher.full_name}}</div>
                     <div ng-show="lesson.teachers.length == 0">&nbsp;</div>
 
                     <div class="lesson__auditories">
-                        <span ng-repeat="auditory in lesson.auditories">{{auditory.auditory_name}}<span ng-hide="$last">, </span></span>
+                        <span ng-repeat="auditory in lesson.auditories">{{auditory.name}}<span ng-hide="$last">, </span></span>
                     </div>
                 </footer>
             </div>

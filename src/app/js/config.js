@@ -57,11 +57,8 @@ unisheduleApp
                 var querystring = date ? "?date=" + date : "";
                 return "/buildings/" + id + '/' + roomId + "/scheduler" + querystring;
             },
-            "searchGroup": function(q) {
-                return "/search/groups?q=" + q;
-            },
-            "searchTeacher": function(q) {
-                return "/search/groups?q=" + q;
+            "search": function(kind, q) {
+                return "/search/" + kind + "?q=" + q;
             }
         };
     }]);

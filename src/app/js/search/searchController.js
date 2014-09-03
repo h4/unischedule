@@ -1,33 +1,31 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
-unisheduleApp.controller('SearchCtrl', function($scope, $rootScope, $http, $location) {
-    $scope.results = [];
-    $rootScope.kind = $location.search().kind;
-    $rootScope.subtitle = "";
-    $rootScope.tabLocation = '/';
+unisheduleApp.controller('SearchCtrl',
+    ['$scope', '$rootScope', '$http', '$location', 'APIUrls',
+        function ($scope, $rootScope, $http, $location, APIUrls) {
+            $scope.results = [];
+            $rootScope.kind = $location.search().kind;
+            $rootScope.subtitle = "";
+            $rootScope.tabLocation = '/';
 
-    $http
-        .get('http://unishedule.h404.ru/api/search?q=' + $location.search.q)
-        .success(function(data) {
-            $scope.results = data.result.map(function(elem) {
-                switch($rootScope.kind) {
-                    case 'groups':
-                        elem.title = 'Группа №' + elem.group_name;
-                        elem.path = '/schedule/' + elem.group_id;
-                        break;
-                    case 'rooms':
-                        elem.path = '/rooms/' + elem.room_id;
-                        break;
-                    case 'teachers':
-                        elem.path = '/teachers/' + elem.teacher_id;
-                        break;
-                }
+            $http
+                .get(APIUrls.getUrl('search', $rootScope.kind, $location.search().q))
+                .success(function (data) {
+                    $scope.results = data.groups.map(function (elem) {
+                        switch ($rootScope.kind) {
+                            case 'groups':
+                                elem.title = 'Группа №' + elem.name;
+                                elem.path = '/schedule/' + elem.id;
+                                break;
+                            case 'teachers':
+                                elem.path = '/teachers/' + elem.id;
+                                break;
+                        }
 
-                return elem;
-            });
-        })
-        .error(function() {
+                        return elem;
+                    });
+                })
+                .error(function () {
 
-        });
-});
-
+                });
+        }]);
