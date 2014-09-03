@@ -31,9 +31,37 @@ unisheduleApp
         APIUrlsProvider.port = 80;
         APIUrlsProvider.urls = {
             "faculties": "/faculties",
-            "userAuthentication": function (username) {
-                return "/users/" + username + "/authentication";
+            "faculty": function(id) {
+                return "/faculties/" + id;
             },
-            "employees": "/employees"
+            "groups": function(id) {
+                return "/faculties/" + id + "/groups";
+            },
+            "schedule": function(id, date) {
+                var querystring = date ? "?date=" + date : "";
+                return "/scheduler/" + id + querystring;
+            },
+            "teachers": "/teachers",
+            "teacher": function(id) {
+                return "/teachers/" + id;
+            },
+            "teacherSchedule": function(id, date) {
+                var querystring = date ? "?date=" + date : "";
+                return "/teachers/" + id + "/scheduler" + querystring;
+            },
+            "buildings": "/buildings",
+            "rooms": function(id) {
+                return "/buildings/" + id;
+            },
+            "roomSchedule": function(id, roomId, date) {
+                var querystring = date ? "?date=" + date : "";
+                return "/buildings/" + id + '/' + roomId + "/scheduler" + querystring;
+            },
+            "searchGroup": function(q) {
+                return "/search/groups?q=" + q;
+            },
+            "searchTeacher": function(q) {
+                return "/search/groups?q=" + q;
+            }
         };
     }]);
