@@ -1,13 +1,13 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
-unisheduleApp.controller('FacultyCtrl', function($scope, $rootScope, $http) {
+unisheduleApp.controller('FacultyCtrl', ['$scope', '$rootScope', '$http', 'APIUrls', function($scope, $rootScope, $http, APIUrls) {
     $scope.faculties = [];
     $rootScope.subtitle = "";
     $rootScope.tabLocation = '/';
 
     $http
-        .get('http://unishedule.h404.ru/api/get_faculties')
+        .get(APIUrls.getUrl('faculties'))
         .success(function(data) {
             $scope.faculties = data.faculties;
         });
-});
+}]);
