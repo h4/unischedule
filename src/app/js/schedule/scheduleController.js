@@ -30,15 +30,29 @@ unisheduleApp.controller('ScheduleCtrl',
                 return week.is_odd ? 'чётная неделя' : 'нечётная неделя';
             }
 
+            function isCurrentWeek(week) {
+                var startDate = new Date(week.date_start),
+                    endDate = new Date(week.date_end),
+                    today = new Date();
+
+                return today > startDate && today <= endDate;
+            }
+
             $http
                 .get(APIUrls.getUrl("schedule", $routeParams.id))
                 .success(function (data) {
+                    var highlightToday = isCurrentWeek(data.week),
+                        todaysDay = new Date().getDay();
+
                     $scope.schedule = data.days
                         .map(function (day) {
                             day.lessons.forEach(function (lesson) {
                                 lesson.startPosition = (lesson.time_start.split(":")[0] - 8) / 2 + 1;
                                 lesson.className = 'lesson_start_' + lesson.startPosition;
                             });
+
+                            day.today = (highlightToday && todaysDay === day.weekday) ?
+                                 'yes' : 'no';
 
                             return day;
                         });

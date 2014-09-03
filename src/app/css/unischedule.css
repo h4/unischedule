@@ -195,6 +195,10 @@ body {
     display: table-cell;
 }
 
+.schedule__day_today_yes {
+    background: #fff;
+}
+
 .day-name {
     font-size: 14px;
     font-weight: 400;
@@ -211,8 +215,8 @@ body {
 
 .lesson {
     position: absolute;
-    left: 0;
-    right: 8px;
+    left: 4px;
+    right: 4px;
     height: 152px;
     padding: 16px;
     overflow: hidden;

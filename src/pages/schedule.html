@@ -7,7 +7,7 @@
         <time class="time">16:00</time>
     </div>
 
-    <div class="schedule__day" ng-repeat="day in schedule"
+    <div class="schedule__day" ng-repeat="day in schedule" ng-class="'schedule__day_today_' + day.today"
             style="width: {{ colWidth }}%;">
         <h3 class="day-name">{{ days[day.weekday] }}</h3>
 
