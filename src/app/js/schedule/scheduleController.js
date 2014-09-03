@@ -51,10 +51,13 @@ unisheduleApp.controller('ScheduleCtrl',
                                 lesson.className = 'lesson_start_' + lesson.startPosition;
                             });
 
-                            day.today = (highlightToday && todaysDay === day.weekday) ?
+                            day.today = (highlightToday && todaysDay === day.weekday % 7) ?
                                  'yes' : 'no';
 
                             return day;
+                        })
+                        .sort(function(cur, prev) {
+                            return cur.weekday - prev.weekday;
                         });
                     $rootScope.subtitle = $scope.title + ' ' + data.group.name +
                         ' на неделю с ' + transformDate(data.week.date_start) +
