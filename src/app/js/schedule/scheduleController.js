@@ -3,8 +3,6 @@ var unisheduleApp = angular.module('unisheduleApp');
 unisheduleApp.controller('ScheduleCtrl',
     ['$scope', '$rootScope', '$http', '$routeParams', 'APIUrls', 'scheduleType',
         function ($scope, $rootScope, $http, $routeParams, APIUrls, type) {
-            console.log(arguments);
-
             $scope.error = false;
 
             switch (type) {
@@ -64,6 +62,10 @@ unisheduleApp.controller('ScheduleCtrl',
                 return today > startDate && today <= endDate;
             }
 
+            function getDayDate(week, day) {
+                return new Date(week.date_start).setHours((day - 1) * 24);
+            }
+
             $http
                 .get($scope.url)
                 .success(function (data) {
@@ -93,10 +95,24 @@ unisheduleApp.controller('ScheduleCtrl',
                         .sort(function (cur, prev) {
                             return cur.weekday - prev.weekday;
                         });
+
+                    for (var i = 1; i < 7; i++) {
+                        if (! $scope.schedule[i - 1]) {
+                            $scope.schedule.push({weekday: i, lessons: []});
+                        }
+                        if ($scope.schedule[i - 1].weekday !== i) {
+                            $scope.schedule.splice(i - 1, 0, {weekday: i, lessons: []});
+                        }
+                    }
+
+                    $scope.schedule.forEach(function(day) {
+                        day.date = getDayDate(data.week, day.weekday);
+                    });
+
                     $rootScope.subtitle = $scope.getTitle(data) +
                         ' на неделю с ' + transformDate(data.week.date_start) +
                         ' по ' + transformDate(data.week.date_start) +
                         ' (' + getWeekType(data.week) + ')';
-                    $scope.colWidth = Math.ceil((1 / data.days.length) * 100);
+                    $scope.colWidth = Math.ceil((1 / $scope.schedule.length) * 100);
                 });
         }]);

@@ -9,7 +9,7 @@
 
     <div class="schedule__day" ng-hide="error" ng-repeat="day in schedule" ng-class="'schedule__day_today_' + day.today"
             style="width: {{ colWidth }}%;">
-        <h3 class="day-name">{{ days[day.weekday] }}</h3>
+        <h3 class="day-name">{{ days[day.weekday] }}<span class="schedule__date">{{day.date | date : 'dd.MM.yyyy'}}</span></h3>
 
         <div class="lessons">
             <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className">

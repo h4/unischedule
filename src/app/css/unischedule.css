@@ -237,7 +237,7 @@ body {
 .time-column {
     font-size: 13px;
     position: absolute;
-    top: 30px;
+    top: 45px;
     bottom: 0;
     right: 100%;
     margin-right: 8px;
@@ -261,6 +261,13 @@ body {
 
 .schedule__day_today_yes {
     background: #fff;
+}
+
+.schedule__date {
+    font-size: 12px;
+    display: block;
+    font-weight: 200;
+    color: #6a6a6a;
 }
 
 .day-name {
