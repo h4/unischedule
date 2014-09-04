@@ -17,7 +17,8 @@ unisheduleApp
                 }
             })
             .when('/teachers', {
-                templateUrl: 'pages/teachers.html'
+                templateUrl: 'pages/teachers.html',
+                controller: 'teachersController'
             })
             .when('/teachers/:id', {
                 templateUrl: 'pages/schedule.html',

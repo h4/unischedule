@@ -9,19 +9,25 @@ unisheduleApp.controller('ScheduleCtrl',
 
             switch (type) {
                 case 'room':
-                    $scope.title = "Расписание аудитории";
                     $rootScope.tabLocation = '/buildings';
                     $scope.url = APIUrls.getUrl("roomSchedule", $routeParams.id, $routeParams.room_id);
+                    $scope.getTitle = function (data) {
+                        return 'Расписание аудитории ' + data.room.name;
+                    };
                     break;
                 case 'teacher':
-                    $scope.title = "Расписание преподавателя";
                     $rootScope.tabLocation = '/teachers';
                     $scope.url = APIUrls.getUrl("teacherSchedule", $routeParams.id);
+                    $scope.getTitle = function (data) {
+                        return 'Расписание преподавателя ' + data.lecturer.full_name;
+                    };
                     break;
                 default :
-                    $scope.title = "Расписание группы";
                     $rootScope.tabLocation = '/';
                     $scope.url = APIUrls.getUrl("schedule", $routeParams.id);
+                    $scope.getTitle = function (data) {
+                        return 'Расписание группы ' + data.group.name;
+                    };
                     break;
             }
 
@@ -87,7 +93,7 @@ unisheduleApp.controller('ScheduleCtrl',
                         .sort(function (cur, prev) {
                             return cur.weekday - prev.weekday;
                         });
-                    $rootScope.subtitle = $scope.title + ' ' + data.group.name +
+                    $rootScope.subtitle = $scope.getTitle(data) +
                         ' на неделю с ' + transformDate(data.week.date_start) +
                         ' по ' + transformDate(data.week.date_start) +
                         ' (' + getWeekType(data.week) + ')';

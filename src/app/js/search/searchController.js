@@ -8,22 +8,35 @@ unisheduleApp.controller('SearchCtrl',
             $rootScope.subtitle = "";
             $rootScope.tabLocation = '/';
 
+            function processGroups(data) {
+                return data.groups.map(function (elem) {
+                    elem.title = 'Группа №' + elem.name;
+                    elem.path = '/schedule/' + elem.id;
+
+                    return elem;
+                })
+            }
+
+            function processTeachers(data) {
+                return data.teachers.map(function (elem) {
+                    elem.title = elem.full_name;
+                    elem.path = '/teachers/' + elem.id;
+
+                    return elem;
+                })
+            }
+
             $http
                 .get(APIUrls.getUrl('search', $rootScope.kind, $location.search().q))
                 .success(function (data) {
-                    $scope.results = data.groups.map(function (elem) {
-                        switch ($rootScope.kind) {
-                            case 'groups':
-                                elem.title = 'Группа №' + elem.name;
-                                elem.path = '/schedule/' + elem.id;
-                                break;
-                            case 'teachers':
-                                elem.path = '/teachers/' + elem.id;
-                                break;
-                        }
-
-                        return elem;
-                    });
+                    switch ($rootScope.kind) {
+                        case 'teachers':
+                            $scope.results = processTeachers(data);
+                            break;
+                        default :
+                            $scope.results = processGroups(data);
+                            break;
+                    }
                 })
                 .error(function () {
 

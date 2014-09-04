@@ -5,6 +5,15 @@ unisheduleApp
         return {
             restrict: 'E',
             controller: function($scope, $element, $attrs, $transclude, $location) {
+                switch ($attrs.kind) {
+                    case 'teachers':
+                        $scope.placeholder = 'Поиск по фамилии преподавателя';
+                        break;
+                    default :
+                        $scope.placeholder = 'Поиск по номеру группы';
+                        break;
+                }
+
                 if ('restore' in $attrs) {
                     $scope.searchString = $location.search().q || "";
                 } else {
