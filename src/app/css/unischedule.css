@@ -109,6 +109,11 @@ body {
     clear: both;
 }
 
+.error {
+    padding: 60px;
+    text-align: center;
+}
+
 .faculties {
 
 }
@@ -168,6 +173,65 @@ body {
     width: 60%;
     padding: 8px 10px;
     background: rgba(255, 255, 255, .5);
+}
+
+.buildings {
+    padding-top: 60px;
+}
+
+.buildings__grid-item {
+    float: left;
+    width: 20%;
+}
+
+.building {
+    position: relative;
+    margin: 0 10px 20px;
+    height: 200px;
+    overflow: hidden;
+    background: #b2dfdb;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px #adadad;
+}
+
+.building__title {
+    font-size: 16px;
+    font-weight: 300;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    padding: 16px;
+    background: rgba(255, 255, 255, .7);
+}
+
+.rooms {
+    padding-top: 60px;
+}
+
+.rooms__grid-item {
+    float: left;
+    min-width: 12%;
+}
+
+.room {
+    position: relative;
+    margin: 0 10px 20px;
+    padding: 0 20px 10px 0;
+    height: 50px;
+    overflow: hidden;
+    background: #b2dfdb;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px #adadad;
+}
+
+.room__title {
+    font-size: 16px;
+    font-weight: 300;
+    padding: 8px 16px;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, .7);
 }
 
 .time-column {

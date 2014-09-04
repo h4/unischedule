@@ -1,0 +1,7 @@
+<div class="buildings" ng-controller="buildingsController">
+    <div class="buildings__grid-item" ng-repeat="building in buildings">
+        <div class="building" ng-click="navigate('/buildings/'+ building.id + '/rooms')">
+            <div class="building__title">{{building.name}}</div>
+        </div>
+    </div>
+</div>

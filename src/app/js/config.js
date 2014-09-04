@@ -10,13 +10,34 @@ unisheduleApp
                 templateUrl: 'pages/groups.html'
             })
             .when('/schedule/:id', {
-                templateUrl: 'pages/schedule.html'
+                templateUrl: 'pages/schedule.html',
+                controller: 'ScheduleCtrl',
+                resolve: {
+                    scheduleType: function() {return 'group'}
+                }
             })
             .when('/teachers', {
                 templateUrl: 'pages/teachers.html'
             })
-            .when('/rooms', {
+            .when('/teachers/:id', {
+                templateUrl: 'pages/schedule.html',
+                controller: 'ScheduleCtrl',
+                resolve: {
+                    scheduleType: function() {return 'teacher'}
+                }
+            })
+            .when('/buildings', {
+                templateUrl: 'pages/buildings.html'
+            })
+            .when('/buildings/:id/rooms', {
                 templateUrl: 'pages/rooms.html'
+            })
+            .when('/buildings/:id/rooms/:room_id/schedule', {
+                templateUrl: 'pages/schedule.html',
+                controller: 'ScheduleCtrl',
+                resolve: {
+                    scheduleType: function() {return 'room'}
+                }
             })
             .when('/search', {
                 templateUrl: 'pages/search.html'

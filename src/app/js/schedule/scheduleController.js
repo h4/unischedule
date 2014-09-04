@@ -1,11 +1,31 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp.controller('ScheduleCtrl',
-    ['$scope', '$rootScope', '$http', '$routeParams', 'APIUrls',
-        function ($scope, $rootScope, $http, $routeParams, APIUrls) {
-            $rootScope.tabLocation = '/';
+    ['$scope', '$rootScope', '$http', '$routeParams', 'APIUrls', 'scheduleType',
+        function ($scope, $rootScope, $http, $routeParams, APIUrls, type) {
+            console.log(arguments);
+
+            $scope.error = false;
+
+            switch (type) {
+                case 'room':
+                    $scope.title = "Расписание аудитории";
+                    $rootScope.tabLocation = '/buildings';
+                    $scope.url = APIUrls.getUrl("roomSchedule", $routeParams.id, $routeParams.room_id);
+                    break;
+                case 'teacher':
+                    $scope.title = "Расписание преподавателя";
+                    $rootScope.tabLocation = '/teachers';
+                    $scope.url = APIUrls.getUrl("teacherSchedule", $routeParams.id);
+                    break;
+                default :
+                    $scope.title = "Расписание группы";
+                    $rootScope.tabLocation = '/';
+                    $scope.url = APIUrls.getUrl("schedule", $routeParams.id);
+                    break;
+            }
+
             $scope.schedule = [];
-            $scope.title = "Расписание группы";
             $scope.days = [
                 '', 'Понедельник', 'Вторник', 'Cреда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'
             ];
@@ -39,11 +59,19 @@ unisheduleApp.controller('ScheduleCtrl',
             }
 
             $http
-                .get(APIUrls.getUrl("schedule", $routeParams.id))
+                .get($scope.url)
                 .success(function (data) {
-                    var highlightToday = isCurrentWeek(data.week),
+                    var highlightToday,
                         todaysDay = new Date().getDay();
 
+                    if (data.error) {
+                        $scope.error = true;
+                        $scope.errorMessage = data.text;
+                        return;
+                    }
+
+                    $scope.error = false;
+                    highlightToday = isCurrentWeek(data.week);
                     $scope.schedule = data.days
                         .map(function (day) {
                             day.lessons.forEach(function (lesson) {
@@ -52,11 +80,11 @@ unisheduleApp.controller('ScheduleCtrl',
                             });
 
                             day.today = (highlightToday && todaysDay === day.weekday % 7) ?
-                                 'yes' : 'no';
+                                'yes' : 'no';
 
                             return day;
                         })
-                        .sort(function(cur, prev) {
+                        .sort(function (cur, prev) {
                             return cur.weekday - prev.weekday;
                         });
                     $rootScope.subtitle = $scope.title + ' ' + data.group.name +
