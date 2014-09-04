@@ -1,28 +1,40 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp.controller('ScheduleCtrl',
-    ['$scope', '$rootScope', '$http', '$routeParams', 'APIUrls', 'scheduleType',
-        function ($scope, $rootScope, $http, $routeParams, APIUrls, type) {
+    ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$filter', 'APIUrls', 'scheduleType',
+        function ($scope, $rootScope, $http, $location, $routeParams, $filter, APIUrls, type) {
             $scope.error = false;
+
+            $scope.prevWeek = function() {
+                var prev_start = $scope.start_date.setHours(-7 * 24);
+
+                $location.search('date', $filter('date')(prev_start, 'yyyy-MM-dd'));
+            };
+
+            $scope.nextWeek = function() {
+                var next_start = $scope.start_date.setHours(7 * 24);
+
+                $location.search('date', $filter('date')(next_start, 'yyyy-MM-dd'));
+            };
 
             switch (type) {
                 case 'room':
                     $rootScope.tabLocation = '/buildings';
-                    $scope.url = APIUrls.getUrl("roomSchedule", $routeParams.id, $routeParams.room_id);
+                    $scope.url = APIUrls.getUrl("roomSchedule", $routeParams.id, $routeParams.room_id, $routeParams.date);
                     $scope.getTitle = function (data) {
                         return 'Расписание аудитории ' + data.room.name;
                     };
                     break;
                 case 'teacher':
                     $rootScope.tabLocation = '/teachers';
-                    $scope.url = APIUrls.getUrl("teacherSchedule", $routeParams.id);
+                    $scope.url = APIUrls.getUrl("teacherSchedule", $routeParams.id, $routeParams.date);
                     $scope.getTitle = function (data) {
                         return 'Расписание преподавателя ' + data.lecturer.full_name;
                     };
                     break;
                 default :
                     $rootScope.tabLocation = '/';
-                    $scope.url = APIUrls.getUrl("schedule", $routeParams.id);
+                    $scope.url = APIUrls.getUrl("schedule", $routeParams.id, $routeParams.date);
                     $scope.getTitle = function (data) {
                         return 'Расписание группы ' + data.group.name;
                     };
@@ -73,10 +85,18 @@ unisheduleApp.controller('ScheduleCtrl',
                         todaysDay = new Date().getDay();
 
                     if (data.error) {
+                        $scope.start_date = $location.search().date ?
+                            new Date($location.search().date) : new Date();
+
+                        console.log($location.search().date, $scope.start_date);
+
+                        $rootScope.subtitle = '';
                         $scope.error = true;
                         $scope.errorMessage = data.text;
                         return;
                     }
+
+                    $scope.start_date = new Date(data.week.date_start);
 
                     $scope.error = false;
                     highlightToday = isCurrentWeek(data.week);

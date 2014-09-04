@@ -7,6 +7,9 @@
         <time class="time">16:00</time>
     </div>
 
+    <div class="schedule__arrow schedule__arrow_prev" ng-click="prevWeek()">Пред.</div>
+    <div class="schedule__arrow schedule__arrow_next" ng-click="nextWeek()">След.</div>
+
     <div class="schedule__day" ng-hide="error" ng-repeat="day in schedule" ng-class="'schedule__day_today_' + day.today"
             style="width: {{ colWidth }}%;">
         <h3 class="day-name">{{ days[day.weekday] }}<span class="schedule__date">{{day.date | date : 'dd.MM.yyyy'}}</span></h3>

@@ -284,6 +284,26 @@ body {
     color: #6a6a6a;
 }
 
+.schedule__arrow {
+    font-size: 16px;
+    font-weight: 400;
+    position: fixed;
+    z-index: 10;
+    bottom: 6px;
+    padding: 8px 40px 8px;
+    background: #f9f9f9;
+    border-bottom: solid 3px #004d40;
+    color: #00695c;
+}
+
+.schedule__arrow_prev {
+    left: 60px;
+}
+
+.schedule__arrow_next {
+    right: 60px;
+}
+
 .day-name {
     font-size: 14px;
     font-weight: 400;
