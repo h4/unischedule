@@ -58,8 +58,7 @@ unisheduleApp.controller('ScheduleCtrl',
 
             function transformDate(str) {
                 // todo: вынести в какой-то внешний сервис
-                var parts = str.split('-');
-                return parts[2] + '.' + parts[1] + '.' + parts[0];
+                return $filter('date')(new Date(str), 'dd.MM.yyyy');
             }
 
             function getWeekType(week) {
@@ -131,7 +130,7 @@ unisheduleApp.controller('ScheduleCtrl',
 
                     $rootScope.subtitle = $scope.getTitle(data) +
                         ' на неделю с ' + transformDate(data.week.date_start) +
-                        ' по ' + transformDate(data.week.date_start) +
+                        ' по ' + transformDate(data.week.date_end) +
                         ' (' + getWeekType(data.week) + ')';
                     $scope.colWidth = Math.ceil((1 / $scope.schedule.length) * 100);
                 });
