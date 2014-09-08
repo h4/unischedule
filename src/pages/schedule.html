@@ -15,7 +15,7 @@
         <h3 class="day-name">{{ days[day.weekday] }}<span class="schedule__date">{{day.date | date : 'dd.MM.yyyy'}}</span></h3>
 
         <div class="lessons">
-            <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className">
+            <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className" ng-click="checkDoubles($event)">
                 <h4 class="lesson__subject">{{lesson.subject}}</h4>
 
                 <div class="lesson__type">{{ lessonTypes[lesson.type] }}</div>

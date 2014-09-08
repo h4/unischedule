@@ -331,6 +331,15 @@ body {
     overflow: hidden;
     background: #b2dfdb;
     border-radius: 2px;
+    transition: all 1s;
+}
+
+.lesson_double {
+    margin-left: 40px;
+    margin-top: 20px;
+    right: -10px;
+    z-index: 1;
+    box-shadow: 0 0 20px #ababab;
 }
 
 .lesson_start_1 {
