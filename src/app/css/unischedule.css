@@ -363,6 +363,46 @@ body {
     top: 640px;
 }
 
+.lesson_duration_1 {
+    height: 72px;
+}
+
+.lesson_duration_2 {
+    height: 152px;
+}
+
+.lesson_duration_3 {
+    height: 232px;
+}
+
+.lesson_duration_4 {
+    height: 312px;
+}
+
+.lesson_duration_5 {
+    height: 392px;
+}
+
+.lesson_duration_6 {
+    height: 476px;
+}
+
+.lesson_duration_7 {
+    height: 552px;
+}
+
+.lesson_duration_8 {
+    height: 632px;
+}
+
+.lesson_duration_9 {
+    height: 712px;
+}
+
+.lesson_duration_10 {
+    height: 792px;
+}
+
 .lesson__subject {
     margin: 0;
     font-size: 16px;
