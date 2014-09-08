@@ -261,7 +261,8 @@ body {
 
 .time {
     display: block;
-    height: 20%;
+    height: 160px;
+    padding-top: 25px;
 }
 
 .schedule {
