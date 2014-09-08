@@ -190,7 +190,8 @@ body {
 }
 
 .buildings {
-    padding-top: 60px;
+    padding-top: 20px;
+    overflow: hidden;
 }
 
 .buildings__grid-item {
