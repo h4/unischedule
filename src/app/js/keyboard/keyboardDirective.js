@@ -1,22 +1,22 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp
-    .directive('keyboard', function () {
+    .directive('keyboard', ['$cookies', function ($cookies) {
         var deleteSymbol = "←",
             rows = [
-            'ё1234567890-' + deleteSymbol,
-            'йцукенгшщзхъ',
-            'фывапролджэ/',
-            'ячсмитьбю',
-            ' '
-        ];
+                    'ё1234567890-' + deleteSymbol,
+                'йцукенгшщзхъ',
+                'фывапролджэ/',
+                'ячсмитьбю',
+                ' '
+            ];
 
         return {
             restrict: 'E',
             controller: function ($rootScope, $element, $animate) {
                 var that = this;
 
-                $rootScope.fire = function(val) {
+                $rootScope.fire = function (val) {
                     if (val != deleteSymbol) {
                         $rootScope.$emit('addSymbol', val);
                     } else {
@@ -24,15 +24,15 @@ unisheduleApp
                     }
                 };
 
-                $element.find('span').on('click', function() {
+                $element.find('span').on('click', function () {
                     this.hide();
                 }.bind(this));
 
-                this.hide = function() {
+                this.hide = function () {
                     $animate.addClass($element, 'keyboard_hidden');
                 };
 
-                this.show = function() {
+                this.show = function () {
                     $animate.removeClass($element, 'keyboard_hidden');
                 };
 
@@ -47,15 +47,16 @@ unisheduleApp
                     return buttons;
                 });
 
-                $rootScope.$on('searchFocus', function(e) {
-                    that.show();
+                $rootScope.$on('searchFocus', function (e) {
+                    if ($cookies.kiosk !== "0"){
+                        that.show();
+                    }
                 });
 
-                $rootScope.$on('hideKeyboard', function(e) {
+                $rootScope.$on('hideKeyboard', function (e) {
                     that.hide();
                 });
             },
             templateUrl: 'app/js/keyboard/keyboard.tpl.html'
         }
-    })
-;
+    }]);
