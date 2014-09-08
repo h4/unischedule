@@ -332,7 +332,8 @@ body {
     overflow: hidden;
     background: #b2dfdb;
     border-radius: 2px;
-    transition: all 1s;
+    transition-property: right, box-shadow, margin-left, margin-top, z-index;
+    transition-duration: 1s;
 }
 
 .lesson_double {
