@@ -12,6 +12,18 @@ unisheduleApp
             $location.path(path);
         };
 
+        if ($cookies.kiosk === "1") {
+            document.onmousedown = function(e) {
+                if (event.button==2) {
+                    return false;
+                }
+            };
+
+            document.oncontextmenu = function(e) {
+                return false;
+            };
+        }
+
         $scope.isActive = function (viewLocation) {
             return (viewLocation === $scope.tabLocation);
         };
