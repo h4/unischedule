@@ -4,6 +4,7 @@ unisheduleApp.controller('SearchCtrl',
     ['$scope', '$rootScope', '$http', '$location', 'APIUrls',
         function ($scope, $rootScope, $http, $location, APIUrls) {
             $scope.results = [];
+            $scope.hideEmpty = false;
             $rootScope.kind = $location.search().kind;
             $rootScope.subtitle = "";
             $rootScope.tabLocation = '/';
@@ -40,6 +41,7 @@ unisheduleApp.controller('SearchCtrl',
             $http
                 .get(APIUrls.getUrl('search', $rootScope.kind, $location.search().q))
                 .success(function (data) {
+                    $scope.query = $location.search().q;
                     switch ($rootScope.kind) {
                         case 'teachers':
                             $scope.results = processTeachers(data);
