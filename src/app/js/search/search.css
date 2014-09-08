@@ -55,7 +55,22 @@
 }
 
 .search__result-title {
-    width: 60%;
     padding: 8px 10px;
     background: rgba(255, 255, 255, .5);
+}
+
+.search__result-label {
+    color: #999;
+}
+
+.search__result_kind_groups {
+    float: left;
+    width: 240px;
+    margin-right: 16px;
+}
+
+.search__result_kind_groups .search__result-title:before {
+    content: "Группа № ";
+    color: #999;
+    font-size: 0.8em;
 }

@@ -10,7 +10,7 @@ unisheduleApp.controller('SearchCtrl',
 
             function processGroups(data) {
                 return data.groups.map(function (elem) {
-                    elem.title = 'Группа №' + elem.name;
+                    elem.title = elem.name;
                     elem.path = '/schedule/' + elem.id;
 
                     return elem;
