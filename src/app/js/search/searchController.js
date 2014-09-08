@@ -18,7 +18,18 @@ unisheduleApp.controller('SearchCtrl',
             }
 
             function processTeachers(data) {
-                return data.teachers.map(function (elem) {
+                $rootScope.tabLocation = '/teachers';
+                return data.teachers
+                    .sort(function(prev, curr) {
+                        if (prev.full_name > curr.full_name) {
+                            return 1;
+                        }
+                        if (prev.full_name < curr.full_name) {
+                            return -1;
+                        }
+                        return 0;
+                    })
+                    .map(function (elem) {
                     elem.title = elem.full_name;
                     elem.path = '/teachers/' + elem.id;
 
