@@ -34,6 +34,12 @@ unisheduleApp
                     }
                 };
 
+                $scope.keyupHandler = function(e) {
+                    if (e.keyCode === 13) {
+                        $scope.submitSearch();
+                    }
+                };
+
                 $scope.listeners = [];
 
                 $scope.listeners.push($rootScope.$on('addSymbol', function (e, symbol) {
