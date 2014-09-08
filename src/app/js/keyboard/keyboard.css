@@ -7,23 +7,13 @@
     padding: 20px;
     background: rgba(255, 255, 255, .9);
     border-top: solid 1px #FFF;
-    -webkit-transform: translate(0, 0%);
-    -moz-transform: translate(0, 0%);
     -ms-transform: translate(0, 0%);
-    -o-transform: translate(0, 0%);
     transform: translate(0, 0%);
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -ms-transition: all 1s;
-    -o-transition: all 1s;
-    transition: all 1s;
+    transition: all .5s;
 }
 
 .keyboard_hidden {
-    -webkit-transform: translate(0, 100%);
-    -moz-transform: translate(0, 100%);
     -ms-transform: translate(0, 100%);
-    -o-transform: translate(0, 100%);
     transform: translate(0, 100%);
 }
 
