@@ -349,23 +349,63 @@ body {
 }
 
 .lesson_start_2 {
-    top: 160px;
+    top: 80px;
 }
 
 .lesson_start_3 {
-    top: 320px;
+    top: 160px;
 }
 
 .lesson_start_4 {
-    top: 480px;
+    top: 240px;
 }
 
 .lesson_start_5 {
+    top: 320px;
+}
+
+.lesson_start_6 {
+    top: 400px;
+}
+
+.lesson_start_7 {
+    top: 480px;
+}
+
+.lesson_start_8 {
+    top: 540px;
+}
+
+.lesson_start_9 {
     top: 640px;
 }
 
 .lesson_duration_1 {
     height: 72px;
+    padding: 8px 16px;
+}
+
+.lesson_duration_1 .lesson__subject {
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lesson_duration_1 .lesson__footer {
+    font-size: 12px;
+    padding: 4px 16px;
+    min-height: 0;
+}
+
+.lesson_duration_1 .lesson__teachers {
+    float: left;
+    width: 60%;
+}
+
+.lesson_duration_1 .lesson__auditories {
+    float: right;
+    width: 40%;
 }
 
 .lesson_duration_2 {
