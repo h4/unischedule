@@ -6,5 +6,9 @@ unisheduleApp.controller('teachersController', ['$scope', '$rootScope', '$locati
         $rootScope.tabLocation = '/teachers';
         $scope.teachers = [];
         $scope.title = "Список преподавателей";
-        $location.search('date', null);
+        $location.search({
+            'date': null,
+            'q': null,
+            'kind': null
+        });
     }]);

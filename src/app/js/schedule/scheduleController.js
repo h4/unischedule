@@ -5,6 +5,11 @@ unisheduleApp.controller('ScheduleCtrl',
         function ($scope, $rootScope, $http, $location, $routeParams, $filter, APIUrls, type) {
             $scope.error = false;
 
+            $location.search({
+                'q': null,
+                'kind': null
+            });
+
             $scope.prevWeek = function () {
                 var prev_start = $scope.start_date.setHours(-7 * 24);
 
