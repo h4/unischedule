@@ -23,7 +23,7 @@
             <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className" ng-click="checkDoubles($event)">
                 <h4 class="lesson__subject">{{lesson.subject}}</h4>
 
-                <div class="lesson__type">{{ lessonTypes[lesson.type] }}</div>
+                <div class="lesson__type">{{ lessonTypes[lesson.type] }}<span ng-show="lesson.additional_info">, </span>{{ lesson.additional_info }}</div>
 
                 <footer class="lesson__footer">
                     <div class="lesson__teachers">
