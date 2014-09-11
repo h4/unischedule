@@ -34,6 +34,10 @@ unisheduleApp
 
                 this.show = function () {
                     $animate.removeClass($element, 'keyboard_hidden');
+                    angular.element(document).one('click', function(e) {
+                        console.log('hide');
+                        this.hide();
+                    }.bind(this));
                 };
 
                 $rootScope.rows = rows.map(function (row) {
@@ -48,9 +52,14 @@ unisheduleApp
                 });
 
                 $rootScope.$on('searchFocus', function (e) {
-                    if ($cookies.kiosk !== "0"){
+                    if ($cookies.kiosk && $cookies.kiosk !== "0"){
                         that.show();
                     }
+                });
+
+                $element.on('click', function(e) {
+                    e.stopPropagation();
+                    return false
                 });
 
                 $rootScope.$on('hideKeyboard', function (e) {

@@ -40,6 +40,11 @@ unisheduleApp
                     }
                 };
 
+                $scope.clickHandler = function(e) {
+                    e.stopPropagation();
+                    return false;
+                };
+
                 $scope.listeners = [];
 
                 $scope.listeners.push($rootScope.$on('addSymbol', function (e, symbol) {

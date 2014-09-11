@@ -1,6 +1,7 @@
 <div class="search-wrapper">
     <input placeholder="{{placeholder}}" class="search__field" type="text"
            ng-keyup="keyupHandler($event)"
-           ng-focus="dispatchFocused()" ng-model="searchString" />
+           ng-focus="dispatchFocused()" ng-model="searchString"
+           ng-click="clickHandler($event)" />
     <span class="search__submit" ng-click="submitSearch()">Найти</span>
 </div>
