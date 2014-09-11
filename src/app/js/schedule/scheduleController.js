@@ -67,7 +67,7 @@ unisheduleApp.controller('ScheduleCtrl',
             }
 
             function getWeekType(week) {
-                return week.is_odd ? 'чётная неделя' : 'нечётная неделя';
+                return week.is_odd ? 'нечётная неделя' : 'чётная неделя';
             }
 
             function isCurrentWeek(week) {
