@@ -19,6 +19,7 @@
     "angularjs": "~1.2.23",
     "angular-route": "~1.2.23",
     "angular-animate": "~1.2.23",
-    "angular-cookies": "~1.2.23"
+    "angular-cookies": "~1.2.23",
+    "fira": "~0.1.0"
   }
 }
