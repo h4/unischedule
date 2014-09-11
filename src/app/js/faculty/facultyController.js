@@ -8,12 +8,7 @@ unisheduleApp.controller('FacultyCtrl',
             $rootScope.subtitle = "";
             $rootScope.tabLocation = '/';
 
-            $location.search({
-                'date': null,
-                'q': null,
-                'kind': null,
-                'kiosk': kiosk
-            });
+            $location.search(['date', 'q', 'kind'], null);
 
             $http
                 .get(APIUrls.getUrl('faculties'))
