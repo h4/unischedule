@@ -4,12 +4,14 @@
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 100;
     padding: 20px;
-    background: rgba(255, 255, 255, .9);
+    background: rgba(255, 255, 255);
     border-top: solid 1px #FFF;
     -ms-transform: translate(0, 0%);
     transform: translate(0, 0%);
     transition: all .5s;
+    box-shadow: 0 0 20px #999;
 }
 
 .keyboard_hidden {
