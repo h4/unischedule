@@ -270,6 +270,7 @@ body {
 .schedule {
     display: table;
     width: 100%;
+    padding-top: 25px;
 }
 
 .schedule__day {
