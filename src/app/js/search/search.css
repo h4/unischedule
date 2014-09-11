@@ -76,18 +76,8 @@
 .search__result_kind_teachers {
     font: 100 20px 'Fira Sans';
     padding: 10px;
-    margin: 8px -30px;
-}
-
-.search__result_kind_teachers .search__result-title:before {
-    content: "—";
-    display: inline-block;
-    width: 27px;
-    color: #999;
-}
-
-.search__result_kind_teachers:first-letter {
-    font-weight: 300;
+    margin: 4px 0;
+    color: #333;
 }
 
 .search__result_kind_groups .search__result-title:before {
