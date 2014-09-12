@@ -6,7 +6,11 @@ unisheduleApp.controller('buildingsController',
             $rootScope.tabLocation = '/buildings';
             $scope.buildings = [];
             $scope.title = "Учебные корпуса СПбГПУ";
-            $location.search(['date', 'q', 'kind', 'kiosk'], null);
+
+            $location.search('date', null);
+            $location.search('q', null);
+            $location.search('kind', null);
+            $location.search('kiosk', null);
 
             $http
                 .get(APIUrls.getUrl("buildings"))
