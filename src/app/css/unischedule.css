@@ -173,7 +173,6 @@ body {
 .groups__level-groups {
     overflow: hidden;
     min-height: 50px;
-    margin-left: -22px;
 }
 
 .group {
