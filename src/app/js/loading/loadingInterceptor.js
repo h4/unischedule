@@ -10,6 +10,14 @@ unisheduleApp.config(function ($httpProvider) {
             'response': function (response) {
                 $rootScope.$broadcast('loading-complete');
                 return response || $q.when(response);
+            },
+            'requestError': function (rejection) {
+                $rootScope.$broadcast('loading-error');
+                return rejection || $q.reject(rejection);
+            },
+            'responseError': function (rejection) {
+                $rootScope.$broadcast('loading-error');
+                return rejection || $q.reject(rejection);
             }
         };
     });

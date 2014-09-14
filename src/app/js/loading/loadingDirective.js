@@ -21,6 +21,12 @@ unisheduleApp
                     }
                 });
 
+                scope.$on("loading-error", function (e) {
+                    that.processCount--;
+                    if (that.processCount === 0) {
+                        element.removeClass('loading_process');
+                    }
+                });
             }
         };
     });
