@@ -125,6 +125,7 @@ unisheduleApp.controller('ScheduleCtrl',
 
                     $scope.error = false;
                     highlightToday = isCurrentWeek(data.week);
+                    $scope.isEmpty = data.days.length === 0;
                     $scope.schedule = data.days
                         .map(function (day) {
                             var lessonsStartTimes = [];
