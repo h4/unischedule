@@ -15,8 +15,6 @@ unisheduleApp.controller('FacultyCtrl',
             $http
                 .get(APIUrls.getUrl('faculties'))
                 .success(function (data) {
-                    $scope.faculties = data.faculties.filter(function(faculty) {
-                        return faculty.id === 0;
-                    });
+                    $scope.faculties = data.faculties;
                 });
         }]);
