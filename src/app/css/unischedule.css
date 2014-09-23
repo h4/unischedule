@@ -260,7 +260,7 @@ body {
 .time-column {
     font-size: 13px;
     position: absolute;
-    top: 55px;
+    top: 85px;
     bottom: 0;
     right: 100%;
     margin-right: 8px;
@@ -274,20 +274,24 @@ body {
     padding-top: 25px;
 }
 
-.schedule {
+.schedule__title {
+    font-weight: 300;
+    margin: 0 0 25px;
+    text-align: center;
+}
+
+.schedule__week {
     display: table;
     width: 100%;
-    padding-top: 25px;
 }
 
 .schedule__day {
     display: table-cell;
+    border-left: solid 1px #dedede;
 }
 
 .schedule__day_today_yes {
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 0 20px #bababa;
+    background: #fffde9;
 }
 
 .schedule__date {
@@ -336,8 +340,9 @@ body {
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 6px;
-    padding: 4px 10px;
+    padding: 10px 10px 4px;
     text-align: center;
+    border-bottom: solid 1px #dedede;
 }
 
 .lessons {

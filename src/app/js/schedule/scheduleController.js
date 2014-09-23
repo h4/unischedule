@@ -4,6 +4,7 @@ unisheduleApp.controller('ScheduleCtrl',
     ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$filter', 'APIUrls', 'scheduleType',
         function ($scope, $rootScope, $http, $location, $routeParams, $filter, APIUrls, type) {
             $scope.error = false;
+            $scope.title = '';
 
             $location.search(['q', 'kind'], null);
 
@@ -31,7 +32,7 @@ unisheduleApp.controller('ScheduleCtrl',
                     $rootScope.tabLocation = '/teachers';
                     $scope.url = APIUrls.getUrl("teacherSchedule", $routeParams.id, $routeParams.date);
                     $scope.getTitle = function (data) {
-                        return 'Расписание преподавателя ' + data.lecturer.full_name;
+                        return data.lecturer.full_name;
                     };
                     break;
                 default :
@@ -152,10 +153,12 @@ unisheduleApp.controller('ScheduleCtrl',
 
                     for (var i = 1; i < 7; i++) {
                         if (!$scope.schedule[i - 1]) {
-                            $scope.schedule.push({weekday: i, lessons: []});
+                            $scope.schedule.push({weekday: i, lessons: [], today: (highlightToday && todaysDay === i) ?
+                                'yes' : 'no'});
                         }
                         if ($scope.schedule[i - 1].weekday !== i) {
-                            $scope.schedule.splice(i - 1, 0, {weekday: i, lessons: []});
+                            $scope.schedule.splice(i - 1, 0, {weekday: i, lessons: [], today: (highlightToday && todaysDay === i) ?
+                                'yes' : 'no'});
                         }
                     }
 
@@ -163,10 +166,8 @@ unisheduleApp.controller('ScheduleCtrl',
                         day.date = getDayDate(data.week, day.weekday);
                     });
 
-                    $rootScope.subtitle = $scope.getTitle(data) +
-                        ' на неделю с ' + transformDate(data.week.date_start) +
-                        ' по ' + transformDate(data.week.date_end) +
-                        ' (' + getWeekType(data.week) + ')';
+                    $scope.title = $scope.getTitle(data) +
+                        ', ' + getWeekType(data.week);
                     $scope.colWidth = Math.ceil((1 / $scope.schedule.length) * 100);
                 });
         }]);

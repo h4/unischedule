@@ -1,46 +1,58 @@
 <div class="schedule">
-    <div class="time-column" ng-hide="error">
-        <time class="time">8:00</time>
-        <time class="time">9:00</time>
-        <time class="time">10:00</time>
-        <time class="time">11:00</time>
-        <time class="time">12:00</time>
-        <time class="time">13:00</time>
-        <time class="time">14:00</time>
-        <time class="time">15:00</time>
-        <time class="time">16:00</time>
-        <time class="time">17:00</time>
-    </div>
 
-    <div class="schedule__arrow schedule__arrow_prev" ng-click="prevWeek()">Предыдущая неделя</div>
-    <div class="schedule__arrow schedule__arrow_next" ng-click="nextWeek()">Следующая неделя</div>
+    <h3 class="schedule__title">{{ title }}</h3>
 
-    <div class="schedule__day" ng-hide="error" ng-repeat="day in schedule" ng-class="'schedule__day_today_' + day.today"
-            style="width: {{ colWidth }}%;">
-        <h3 class="day-name">{{ days[day.weekday] }}<span class="schedule__date">{{day.date | date : 'dd.MM.yyyy'}}</span></h3>
+    <div class="schedule__week">
+        <div class="time-column" ng-hide="error">
+            <time class="time">8:00</time>
+            <time class="time">9:00</time>
+            <time class="time">10:00</time>
+            <time class="time">11:00</time>
+            <time class="time">12:00</time>
+            <time class="time">13:00</time>
+            <time class="time">14:00</time>
+            <time class="time">15:00</time>
+            <time class="time">16:00</time>
+            <time class="time">17:00</time>
+        </div>
 
-        <div class="lessons">
-            <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className" ng-click="checkDoubles($event)">
-                <h4 class="lesson__subject">{{lesson.subject}}</h4>
+        <div class="schedule__arrow schedule__arrow_prev" ng-click="prevWeek()">Предыдущая неделя</div>
+        <div class="schedule__arrow schedule__arrow_next" ng-click="nextWeek()">Следующая неделя</div>
 
-                <div class="lesson__type">{{ lessonTypes[lesson.type] }}<span ng-show="lesson.additional_info">, </span>{{ lesson.additional_info }}</div>
+        <div class="schedule__day" ng-hide="error" ng-repeat="day in schedule"
+             ng-class="'schedule__day_today_' + day.today"
+             style="width: {{ colWidth }}%;">
+            <h3 class="day-name">{{ days[day.weekday] }}<span
+                    class="schedule__date">{{day.date | date : 'dd.MM.yyyy'}}</span></h3>
 
-                <footer class="lesson__footer">
-                    <div class="lesson__teachers">
-                        <div ng-repeat="teacher in lesson.teachers">{{teacher.full_name}}</div>
-                        <div ng-show="lesson.teachers.length == 0">&nbsp;</div>
+            <div class="lessons">
+                <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className"
+                     ng-click="checkDoubles($event)">
+                    <h4 class="lesson__subject">{{lesson.subject}}</h4>
+
+                    <div class="lesson__type">{{ lessonTypes[lesson.type] }}<span
+                            ng-show="lesson.additional_info">, </span>{{ lesson.additional_info }}
                     </div>
 
-                    <div class="lesson__auditories">
-                        <span ng-repeat="auditory in lesson.auditories">{{auditory.name}}<span ng-hide="$last">, </span></span>
-                        <span ng-repeat="group in lesson.groups">{{group.name}}<span ng-hide="$last">, </span></span>
-                    </div>
-                </footer>
+                    <footer class="lesson__footer">
+                        <div class="lesson__teachers">
+                            <div ng-repeat="teacher in lesson.teachers">{{teacher.full_name}}</div>
+                            <div ng-show="lesson.teachers.length == 0">&nbsp;</div>
+                        </div>
+
+                        <div class="lesson__auditories">
+                            <span ng-repeat="auditory in lesson.auditories">{{auditory.name}}<span
+                                    ng-hide="$last">, </span></span>
+                            <span ng-repeat="group in lesson.groups">{{group.name}}<span
+                                    ng-hide="$last">, </span></span>
+                        </div>
+                    </footer>
+                </div>
             </div>
         </div>
+
+        <div class="error" ng-show="error">{{errorMessage}}</div>
+
+        <div class="schedule__empty" ng-show="isEmpty">На эту неделю занятия не&nbsp;поставлены</div>
     </div>
-
-    <div class="error" ng-show="error">{{errorMessage}}</div>
-
-    <div class="schedule__empty" ng-show="isEmpty">На эту неделю занятия не&nbsp;поставлены</div>
 </div>
