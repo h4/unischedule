@@ -1,7 +1,9 @@
 var unisheduleApp = angular.module('unisheduleApp', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
 unisheduleApp
-    .controller('appCtrl', function ($scope, $location, $cookies) {
+    .controller('appCtrl', function ($scope, $location, $cookies, $rootScope, $timeout) {
+        var maxPageLiveTime = 3;
+
         $scope.title = "Санкт-Петербургский государственный политехнический университет";
 
         if ($location.search().kiosk) {
@@ -13,6 +15,8 @@ unisheduleApp
         };
 
         if ($cookies.kiosk === "1") {
+            var timeoutId;
+
             document.onmousedown = function(e) {
                 if (event.button==2) {
                     return false;
@@ -24,7 +28,17 @@ unisheduleApp
             };
 
             angular.element(document.body).addClass('kiosk');
+
+            $rootScope.$on('$locationChangeSuccess', function () {
+                if (timeoutId) {
+                    $timeout.cancel(timeoutId);
+                }
+                timeoutId = $timeout(function() {
+                    $scope.navigate('/');
+                }, maxPageLiveTime * 60 * 1000);
+            });
         }
+
 
         $scope.isActive = function (viewLocation) {
             return (viewLocation === $scope.tabLocation);
