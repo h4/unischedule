@@ -10,6 +10,13 @@ body {
     background: #f0f0f0;
 }
 
+.kiosk {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .page-header {
     position: fixed;
     top: 0;

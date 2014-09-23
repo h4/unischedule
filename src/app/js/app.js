@@ -22,6 +22,8 @@ unisheduleApp
             document.oncontextmenu = function(e) {
                 return false;
             };
+
+            angular.element(document.body).addClass('kiosk');
         }
 
         $scope.isActive = function (viewLocation) {
