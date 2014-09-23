@@ -9,10 +9,6 @@ unisheduleApp.controller('TabsCtrl', function($scope, $http) {
         name: 'Преподаватели',
         url: '',
         isActive: false
-    }, {
-        name: 'Аудитори',
-        url: '',
-        isActive: false
     } ];
 
     $scope.tab = '';
