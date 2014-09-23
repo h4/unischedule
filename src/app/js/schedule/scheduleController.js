@@ -5,6 +5,7 @@ unisheduleApp.controller('ScheduleCtrl',
         function ($scope, $rootScope, $http, $location, $routeParams, $filter, APIUrls, type) {
             $scope.error = false;
             $scope.title = '';
+            $scope.isCurrentWeek = false;
 
             $location.search(['q', 'kind'], null);
 
@@ -18,6 +19,17 @@ unisheduleApp.controller('ScheduleCtrl',
                 var next_start = $scope.start_date.setHours(7 * 24);
 
                 $location.search('date', $filter('date')(next_start, 'yyyy-MM-dd'));
+            };
+
+            $scope.getTime = function() {
+                var now = new Date(),
+                    start = new Date();
+
+                start.setHours(8);
+                start.setMinutes(0);
+                start.setSeconds(0);
+
+                return Math.round((now - start) / 60 / 1000);
             };
 
             switch (type) {
@@ -169,5 +181,9 @@ unisheduleApp.controller('ScheduleCtrl',
                     $scope.title = $scope.getTitle(data) +
                         ', ' + getWeekType(data.week);
                     $scope.colWidth = Math.ceil((1 / $scope.schedule.length) * 100);
+
+                    $scope.isCurrentWeek = highlightToday;
+
+                    $scope.time = $scope.getTime();
                 });
         }]);
