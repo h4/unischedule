@@ -9,6 +9,7 @@
         <div class="search__result-title">
             {{ result.title }}
         </div>
+        <div class="search__result-subtitle" ng-show="result.chair">Кафедра {{ result.chair }}</div>
     </div>
 
     <div class="search__result_empty" ng-show="results.length == 0">По запросу <strong>{{query}}</strong> ничего не найдено.</div>

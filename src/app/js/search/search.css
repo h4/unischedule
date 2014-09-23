@@ -55,6 +55,11 @@
 .search__result-title {
 }
 
+.search__result-subtitle {
+    margin-top: 5px;
+    font-size: 15px;
+}
+
 .search__result-label {
     color: #999;
 }
