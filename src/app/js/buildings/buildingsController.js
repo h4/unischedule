@@ -18,8 +18,8 @@ unisheduleApp.controller('buildingsController',
                     $rootScope.subtitle = $scope.title;
                     $scope.buildings = data.buildings;
                 })
-                .error(function () {
-
+                .error(function() {
+                    $scope.navigate('/');
                 });
         }]
 );

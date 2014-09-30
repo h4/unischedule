@@ -8,6 +8,11 @@ unisheduleApp.config(function ($httpProvider) {
                 return config || $q.when(config);
             },
             'response': function (response) {
+                if (response.data.error) {
+                    $rootScope.$broadcast('loading-error');
+
+                    return $q.reject(response);
+                }
                 $rootScope.$broadcast('loading-complete');
                 return response || $q.when(response);
             },

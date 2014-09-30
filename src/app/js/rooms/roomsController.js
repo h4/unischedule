@@ -16,8 +16,8 @@ unisheduleApp.controller('roomsController',
                     $scope.building.id = data.id;
                     $scope.building.name = data.name;
                 })
-                .error(function () {
-
+                .error(function() {
+                    $scope.navigate('/');
                 });
         }]
 );

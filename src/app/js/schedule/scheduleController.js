@@ -185,5 +185,8 @@ unisheduleApp.controller('ScheduleCtrl',
                     $scope.isCurrentWeek = highlightToday;
 
                     $scope.time = $scope.getTime();
+                })
+                .error(function() {
+                    $scope.navigate('/');
                 });
         }]);

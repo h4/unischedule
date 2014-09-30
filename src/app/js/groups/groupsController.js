@@ -59,5 +59,8 @@ unisheduleApp.controller('GroupsCtrl',
                                 $scope.levels[group.level - 1].groups.push(group);
                             }
                         });
+                })
+                .error(function() {
+                    $scope.navigate('/');
                 });
         }]);

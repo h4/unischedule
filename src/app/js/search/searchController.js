@@ -51,7 +51,7 @@ unisheduleApp.controller('SearchCtrl',
                             break;
                     }
                 })
-                .error(function () {
-
+                .error(function() {
+                    $scope.navigate('/');
                 });
         }]);
