@@ -18,6 +18,10 @@ body {
     user-select: none;
 }
 
+.kiosk * {
+    -moz-user-select: none;
+}
+
 .page-header {
     position: fixed;
     top: 0;
