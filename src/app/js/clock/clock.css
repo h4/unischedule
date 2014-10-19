@@ -1,0 +1,51 @@
+.clock {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 20px;
+}
+
+@-webkit-keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.clock__separator {
+    -webkit-animation: pulse 1s infinite;
+    -moz-animation: pulse 1s infinite;
+    animation: pulse 1s infinite;
+}
+
+.clock__hours {
+    display: inline-block;
+    width: 2em;
+    text-align: right;
+}
+
+.clock__minutes {
+    display: inline-block;
+    width: 2em;
+    text-align: left;
+}
