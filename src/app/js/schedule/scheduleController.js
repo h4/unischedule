@@ -117,6 +117,16 @@ unisheduleApp.controller('ScheduleCtrl',
                 });
             };
 
+            $scope._isCurrentLesson = function(lesson) {
+                var now = new Date();
+                var lessonStartArr = lesson.time_start.split(':');
+                var lessonEndArr = lesson.time_end.split(':');
+                var lessonStart = new Date().setHours(lessonStartArr[0], lessonStartArr[1]);
+                var lessonEnd = new Date().setHours(lessonEndArr[0], lessonEndArr[1]);
+
+                return lessonStart <= now && now <= lessonEnd;
+            };
+
             $http
                 .get($scope.url)
                 .success(function (data) {
@@ -133,7 +143,6 @@ unisheduleApp.controller('ScheduleCtrl',
                         return;
                     }
 
-
                     $scope.start_date = new Date(data.week.date_start);
 
                     $scope.error = false;
@@ -142,6 +151,9 @@ unisheduleApp.controller('ScheduleCtrl',
                     $scope.schedule = data.days
                         .map(function (day) {
                             var lessonsStartTimes = [];
+
+                            day.today = (highlightToday && todaysDay === day.weekday % 7) ?
+                                'yes' : 'no';
 
                             day.lessons.forEach(function (lesson) {
                                 lesson.startPosition = (lesson.time_start.split(":")[0] - 7);
@@ -152,10 +164,11 @@ unisheduleApp.controller('ScheduleCtrl',
                                     lesson.className += ' lesson_double';
                                 }
                                 lessonsStartTimes.push(lesson.time_start);
-                            });
 
-                            day.today = (highlightToday && todaysDay === day.weekday % 7) ?
-                                'yes' : 'no';
+                                if (day.today == 'yes' && $scope._isCurrentLesson(lesson)) {
+                                    lesson.className += ' lesson_current'
+                                }
+                            });
 
                             return day;
                         })

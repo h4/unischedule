@@ -398,6 +398,25 @@ body {
     transition-duration: 1s;
 }
 
+.lesson_current {
+    padding: 14px;
+    border: solid 2px #00695c;
+}
+
+.lesson_current::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background: #C00;
+    -webkit-animation: pulse 2s infinite;
+    -moz-animation: pulse 2s infinite;
+    animation: pulse 2s infinite;
+}
+
 .lesson_double {
     margin-left: 40px;
     margin-top: 20px;
