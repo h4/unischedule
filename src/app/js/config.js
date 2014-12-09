@@ -49,7 +49,7 @@ unisheduleApp
     })
     .config(['APIUrlsProvider', function(APIUrlsProvider) {
         APIUrlsProvider.hostname = "ruz.spbstu.ru";
-        APIUrlsProvider.path = '/node/api_uni';
+        APIUrlsProvider.path = '/api/v1/ruz';
         APIUrlsProvider.port = 80;
         APIUrlsProvider.urls = {
             "faculties": "/faculties",
