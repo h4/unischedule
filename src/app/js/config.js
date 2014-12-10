@@ -77,7 +77,7 @@ unisheduleApp
             },
             "roomSchedule": function(id, roomId, date) {
                 var querystring = date ? "?date=" + date : "";
-                return "/buildings/" + id + '/' + roomId + "/scheduler" + querystring;
+                return "/buildings/" + id + '/rooms/' + roomId + "/scheduler" + querystring;
             },
             "search": function(kind, q) {
                 return "/search/" + kind + "?q=" + q;

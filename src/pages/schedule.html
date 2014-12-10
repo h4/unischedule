@@ -38,16 +38,16 @@
                     {{teacher.full_name}}
                     <footer class="lesson__footer">
                         <div ng-show="showTeacher" class="lesson__teachers">
-                            <div ng-repeat="teacher in lesson.teachers">{{teacher.full_name}}</div>
+                            <div ng-repeat="teacher in lesson.teachers" ng-click="navigate('/teachers/' + teacher.id)">{{teacher.full_name}}</div>
                             <div ng-show="lesson.teachers.length == 0">&nbsp;</div>
                         </div>
 
                         <div ng-show="showRoom" class="lesson__auditories">
-                            <span ng-repeat="auditory in lesson.auditories">{{auditory.name}}<span
+                            <span ng-repeat="auditory in lesson.auditories" ng-click="navigate('/buildings/' + auditory.building.id + '/rooms/' + auditory.id + '/schedule')">{{auditory.name}}<span
                                     ng-hide="$last">, </span></span>
                         </div>
                         <div ng-show="showGroups" class="lesson__groups">
-                            <span ng-repeat="group in lesson.groups">{{group.name}}<span
+                            <span ng-repeat="group in lesson.groups"  ng-click="navigate('/schedule/' + group.id)" data-id="{{group.id}}">{{group.name}}<span
                                     ng-hide="$last">, </span></span>
                         </div>
                     </footer>
