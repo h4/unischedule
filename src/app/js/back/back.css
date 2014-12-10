@@ -1,0 +1,16 @@
+.back {
+    display: inline-block;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    vertical-align: middle;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+.back_visible {
+    opacity: 1;
+    width: 20px;
+    padding-right: 1.5em;
+}

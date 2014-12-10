@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="/app/js/notification/notification.css"/>
     <link rel="stylesheet" href="/app/js/search/search.css"/>
     <link rel="stylesheet" href="/app/js/clock/clock.css"/>
+    <link rel="stylesheet" href="/app/js/back/back.css"/>
 </head>
 <body ng-controller="appCtrl">
 <header class="page-header" ng-click="navigate('/')">
     <img class="logo" src="app/img/spbstu_logo.png" ng-click="navigate('/')" alt=""/>
 
-    <div class="page-header__title">{{ title }}</div>
+    <div class="page-header__title"><back class="back">←</back>{{ title }}</div>
     <clock class="clock" interval="1000"></clock>
 </header>
 <section class="page-subheader" ng-show="subtitle">{{ subtitle }}</section>
@@ -55,6 +56,7 @@
 <script src="/app/js/search/searchDirective.js"></script>
 <script src="/app/js/search/searchController.js"></script>
 <script src="/app/js/clock/clockDirective.js"></script>
+<script src="/app/js/back/backDirective.js"></script>
 <script src="/app/js/config.js"></script>
 </body>
 </html>
