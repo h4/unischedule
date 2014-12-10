@@ -551,3 +551,8 @@ body {
 .lesson__auditories {
     text-align: right;
 }
+
+.lesson__groups {
+    text-align: right;
+    color: #999;
+}

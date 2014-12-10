@@ -44,7 +44,7 @@ unisheduleApp.controller('ScheduleCtrl',
                     $rootScope.tabLocation = '/teachers';
                     $scope.url = APIUrls.getUrl("teacherSchedule", $routeParams.id, $routeParams.date);
                     $scope.getTitle = function (data) {
-                        return data.lecturer.full_name;
+                        return data.teacher.full_name;
                     };
                     break;
                 default :
@@ -196,6 +196,10 @@ unisheduleApp.controller('ScheduleCtrl',
                     $scope.colWidth = Math.ceil((1 / $scope.schedule.length) * 100);
 
                     $scope.isCurrentWeek = highlightToday;
+
+                    $scope.showTeacher = type !== 'teacher';
+                    $scope.showRoom = type !== 'room';
+                    $scope.showGroups = type !== 'group';
 
                     $scope.time = $scope.getTime();
                 })
