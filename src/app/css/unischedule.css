@@ -537,6 +537,16 @@ body {
     font-size: 12px;
 }
 
+.lesson__time {
+    font-size: 11px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    letter-spacing: .5px;
+    padding: 4px 4px;
+    color: #000;
+}
+
 .lesson__footer {
     font-size: 13px;
     position: absolute;

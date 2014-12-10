@@ -156,7 +156,11 @@ unisheduleApp.controller('ScheduleCtrl',
                                 'yes' : 'no';
 
                             day.lessons.forEach(function (lesson) {
-                                lesson.startPosition = (lesson.time_start.split(":")[0] - 7);
+                                var timeStart = lesson.time_start.split(":");
+                                lesson.startPosition = (timeStart[0] - 7);
+                                if (timeStart[1] !== '00') {
+                                    lesson.showTime = true;
+                                }
                                 lesson.duration = lesson.time_end.split(":")[0] - lesson.time_start.split(":")[0] + 1;
                                 lesson.className = 'lesson_start_' + lesson.startPosition;
                                 lesson.className += ' lesson_duration_' + lesson.duration;
