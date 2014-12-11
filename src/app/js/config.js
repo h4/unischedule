@@ -80,7 +80,7 @@ unisheduleApp
                 return "/buildings/" + id + '/rooms/' + roomId + "/scheduler" + querystring;
             },
             "search": function(kind, q) {
-                return "/search/" + kind + "?q=" + q;
+                return "/search/" + kind + "?q=" + encodeURIComponent(q);
             }
         };
     }]);
