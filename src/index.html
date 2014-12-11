@@ -3,18 +3,11 @@
 <head lang="ru">
     <meta charset="UTF-8">
     <title>SPbSTU Schedule</title>
-    <link rel="stylesheet" href="/vendor/fira/fira.css">
-    <link rel="stylesheet" href="/app/css/unischedule.css"/>
-    <link rel="stylesheet" href="/app/js/keyboard/keyboard.css"/>
-    <link rel="stylesheet" href="/app/js/loading/loading.css"/>
-    <link rel="stylesheet" href="/app/js/notification/notification.css"/>
-    <link rel="stylesheet" href="/app/js/search/search.css"/>
-    <link rel="stylesheet" href="/app/js/clock/clock.css"/>
-    <link rel="stylesheet" href="/app/js/back/back.css"/>
+    <link rel="stylesheet" href="/public/app.css"/>
 </head>
 <body ng-controller="appCtrl">
 <header class="page-header" ng-click="navigate('/')">
-    <img class="logo" src="app/img/spbstu_logo.png" ng-click="navigate('/')" alt=""/>
+    <img class="logo" src="/public/spbstu_logo.png" ng-click="navigate('/')" alt=""/>
 
     <div class="page-header__title"><back class="back">←</back>{{ title }}</div>
     <clock class="clock" interval="1000"></clock>
@@ -37,26 +30,6 @@
 <loading class="loading"></loading>
 <notification class="notification">В работе сервиса произошла непредвиденная ошибка</notification>
 
-<script src="/vendor/angular/angular.js"></script>
-<script src="/vendor/angular-route/angular-route.js"></script>
-<script src="/vendor/angular-animate/angular-animate.js"></script>
-<script src="/vendor/angular-cookies/angular-cookies.js"></script>
-<script src="/app/js/app.js"></script>
-<script src="/app/js/apiurls/APIUrls.js"></script>
-<script src="/app/js/faculty/facultyController.js"></script>
-<script src="/app/js/groups/groupsController.js"></script>
-<script src="/app/js/schedule/scheduleController.js"></script>
-<script src="/app/js/teachers/teachersController.js"></script>
-<script src="/app/js/buildings/buildingsController.js"></script>
-<script src="/app/js/rooms/roomsController.js"></script>
-<script src="/app/js/keyboard/keyboardDirective.js"></script>
-<script src="/app/js/loading/loadingInterceptor.js"></script>
-<script src="/app/js/loading/loadingDirective.js"></script>
-<script src="/app/js/notification/notificationDirective.js"></script>
-<script src="/app/js/search/searchDirective.js"></script>
-<script src="/app/js/search/searchController.js"></script>
-<script src="/app/js/clock/clockDirective.js"></script>
-<script src="/app/js/back/backDirective.js"></script>
-<script src="/app/js/config.js"></script>
+<script src="/public/app.js"></script>
 </body>
 </html>

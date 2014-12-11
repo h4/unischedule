@@ -1,7 +1,7 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
-unisheduleApp.config(function ($httpProvider) {
-    $httpProvider.interceptors.push(function ($q, $rootScope) {
+unisheduleApp.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push(['$q', '$rootScope', function ($q, $rootScope) {
         return {
             'request': function (config) {
                 $rootScope.$broadcast('loading-started');
@@ -25,5 +25,5 @@ unisheduleApp.config(function ($httpProvider) {
                 return rejection || $q.reject(rejection);
             }
         };
-    });
-});
+    }]);
+}]);

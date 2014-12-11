@@ -4,7 +4,8 @@ unisheduleApp
     .directive('search', ['$rootScope', function($rootScope) {
         return {
             restrict: 'E',
-            controller: function($scope, $element, $attrs, $transclude, $location) {
+            controller: ['$scope', '$element', '$attrs', '$transclude', '$location',
+                function($scope, $element, $attrs, $transclude, $location) {
                 switch ($attrs.kind) {
                     case 'teachers':
                         $scope.placeholder = 'Поиск по фамилии преподавателя';
@@ -54,14 +55,14 @@ unisheduleApp
                 $scope.listeners.push($rootScope.$on('removeSymbol', function () {
                     $scope.searchString = $scope.searchString.slice(0, -1);
                 }));
-            },
-            link: function(scope, element, attrs) {
-                scope.$on('$destroy', function() {
-                    scope.listeners.forEach(function(fn) {
+            }],
+            link: function($scope, $element, $attrs) {
+                $scope.$on('$destroy', function() {
+                    $scope.listeners.forEach(function(fn) {
                         fn();
                     });
 
-                    scope.listeners = [];
+                    $scope.listeners = [];
                 });
             },
             templateUrl: 'app/js/search/search.tpl.html'

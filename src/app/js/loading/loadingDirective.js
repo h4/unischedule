@@ -7,24 +7,24 @@ unisheduleApp
 
         return {
             restrict: 'E',
-            link: function (scope, element, attrs) {
+            link: function ($rootScope, $element, $attrs) {
 
-                scope.$on("loading-started", function (e) {
+                $rootScope.$on("loading-started", function (e) {
                     that.processCount++;
-                    element.addClass('loading_process');
+                    $element.addClass('loading_process');
                 });
 
-                scope.$on("loading-complete", function (e) {
+                $rootScope.$on("loading-complete", function (e) {
                     that.processCount--;
                     if (that.processCount === 0) {
-                        element.removeClass('loading_process');
+                        $element.removeClass('loading_process');
                     }
                 });
 
-                scope.$on("loading-error", function (e) {
+                $rootScope.$on("loading-error", function (e) {
                     that.processCount--;
                     if (that.processCount === 0) {
-                        element.removeClass('loading_process');
+                        $element.removeClass('loading_process');
                     }
                 });
             }

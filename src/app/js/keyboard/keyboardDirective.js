@@ -13,7 +13,9 @@ unisheduleApp
 
         return {
             restrict: 'E',
-            controller: function ($rootScope, $element, $animate) {
+            controller: [
+                '$rootScope', '$element', '$animate',
+                function ($rootScope, $element, $animate) {
                 var that = this;
 
                 $rootScope.fire = function (val) {
@@ -65,7 +67,7 @@ unisheduleApp
                 $rootScope.$on('hideKeyboard', function (e) {
                     that.hide();
                 });
-            },
+            }],
             templateUrl: 'app/js/keyboard/keyboard.tpl.html'
         }
     }]);

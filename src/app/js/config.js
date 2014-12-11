@@ -1,7 +1,7 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp
-    .config(function ($routeProvider) {
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'pages/faculties.html'
@@ -46,7 +46,7 @@ unisheduleApp
             .otherwise({
                 redirectTo: '/'
             });
-    })
+    }])
     .config(['APIUrlsProvider', function(APIUrlsProvider) {
         APIUrlsProvider.hostname = "ruz.spbstu.ru";
         APIUrlsProvider.path = '/api/v1/ruz';

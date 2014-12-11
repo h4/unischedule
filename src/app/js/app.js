@@ -1,7 +1,9 @@
 var unisheduleApp = angular.module('unisheduleApp', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
 unisheduleApp
-    .controller('appCtrl', function ($scope, $location, $cookies, $rootScope, $timeout) {
+    .controller('appCtrl', [
+        '$scope', '$location', '$cookies', '$rootScope', '$timeout',
+        function ($scope, $location, $cookies, $rootScope, $timeout) {
         var maxPageLiveTime = 3;
 
         $scope.title = "Санкт-Петербургский государственный политехнический университет";
@@ -43,4 +45,4 @@ unisheduleApp
         $scope.isActive = function (viewLocation) {
             return (viewLocation === $scope.tabLocation);
         };
-    });
+    }]);
