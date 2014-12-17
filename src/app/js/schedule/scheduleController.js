@@ -68,7 +68,8 @@ unisheduleApp.controller('ScheduleCtrl',
                 'Консультация',
                 'Внеучебное занятие',
                 'Зачет',
-                'Экзамен'
+                'Экзамен',
+                'Доп. экзамен'
             ];
 
             function transformDate(str) {
