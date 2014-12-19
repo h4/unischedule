@@ -82,15 +82,23 @@ unisheduleApp.controller('ScheduleCtrl',
             }
 
             function isCurrentWeek(week) {
-                var startDate = new Date(week.date_start),
-                    endDate = new Date(week.date_end),
+                var startDate = dateFromString(week.date_start),
+                    endDate = dateFromString(week.date_end),
                     today = new Date();
 
                 return today > startDate && today <= endDate;
             }
 
             function getDayDate(week, day) {
-                return new Date(week.date_start).setHours((day - 1) * 24);
+                var startDate = dateFromString(week.date_start);
+
+                return startDate.setHours((day - 1) * 24);
+            }
+
+            function dateFromString(dateString) {
+                var dateArr = dateString.split('.');
+
+                return new Date(dateArr[0], (dateArr[1] - 1), dateArr[2]);
             }
 
             $scope.checkDoubles = function (e) {
@@ -119,7 +127,7 @@ unisheduleApp.controller('ScheduleCtrl',
             };
 
             $scope._isCurrentLesson = function(lesson) {
-                var now = new Date();
+                var now = new Date().getTime();
                 var lessonStartArr = lesson.time_start.split(':');
                 var lessonEndArr = lesson.time_end.split(':');
                 var lessonStart = new Date().setHours(lessonStartArr[0], lessonStartArr[1]);
@@ -144,7 +152,7 @@ unisheduleApp.controller('ScheduleCtrl',
                         return;
                     }
 
-                    $scope.start_date = new Date(data.week.date_start);
+                    $scope.start_date = dateFromString(data.week.date_start);
 
                     $scope.error = false;
                     highlightToday = isCurrentWeek(data.week);
