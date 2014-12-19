@@ -206,7 +206,7 @@ unisheduleApp.controller('ScheduleCtrl',
 
                     $scope.title = $scope.getTitle(data) +
                         ', ' + getWeekType(data.week);
-                    $scope.colWidth = Math.ceil((1 / $scope.schedule.length) * 100);
+                    $scope.colStyle = { width: Math.ceil((1 / $scope.schedule.length) * 100) + '%' };
 
                     $scope.isCurrentWeek = highlightToday;
 

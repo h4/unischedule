@@ -2,7 +2,7 @@
 
     <h3 class="schedule__title">{{ title }}</h3>
 
-    <div class="schedule__week">
+    <div class="schedule__week-wrapper">
         <div class="time-marker" style="top: {{time / 60 * 80 + 110}}px;" ng-show="isCurrentWeek"></div>
 
         <div class="time-column" ng-hide="error">
@@ -21,37 +21,39 @@
         <div class="schedule__arrow schedule__arrow_prev" ng-click="prevWeek()">Предыдущая неделя</div>
         <div class="schedule__arrow schedule__arrow_next" ng-click="nextWeek()">Следующая неделя</div>
 
-        <div class="schedule__day" ng-hide="error" ng-repeat="day in schedule"
-             ng-class="'schedule__day_today_' + day.today"
-             style="width: {{ colWidth }}%;">
-            <h3 class="day-name">{{ days[day.weekday] }}<span
-                    class="schedule__date">{{day.date | date : 'dd.MM.yyyy'}}</span></h3>
+        <div class="schedule__week">
+            <div class="schedule__day" ng-hide="error" ng-repeat="day in schedule"
+                 ng-class="'schedule__day_today_' + day.today" ng-style="colStyle" >
 
-            <div class="lessons">
-                <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className"
-                     ng-click="checkDoubles($event)">
-                    <div class="lesson__time" ng-show="lesson.showTime">{{lesson.time_start}}-{{lesson.time_end}}</div>
-                    <h4 class="lesson__subject">{{lesson.subject}}</h4>
+                <h3 class="day-name">{{ days[day.weekday] }}<span
+                        class="schedule__date">{{day.date | date : 'dd.MM.yyyy'}}</span></h3>
 
-                    <div class="lesson__type">{{ lessonTypes[lesson.type] }}<span
-                            ng-show="lesson.additional_info">, </span>{{ lesson.additional_info }}
+                <div class="lessons">
+                    <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className"
+                         ng-click="checkDoubles($event)">
+                        <div class="lesson__time" ng-show="lesson.showTime">{{lesson.time_start}}-{{lesson.time_end}}</div>
+                        <h4 class="lesson__subject">{{lesson.subject}}</h4>
+
+                        <div class="lesson__type">{{ lessonTypes[lesson.type] }}<span
+                                ng-show="lesson.additional_info">, </span>{{ lesson.additional_info }}
+                        </div>
+                        {{teacher.full_name}}
+                        <footer class="lesson__footer">
+                            <div ng-show="showTeacher" class="lesson__teachers">
+                                <div ng-repeat="teacher in lesson.teachers" ng-click="navigate('/teachers/' + teacher.id)">{{teacher.full_name}}</div>
+                                <div ng-show="lesson.teachers.length == 0">&nbsp;</div>
+                            </div>
+
+                            <div ng-show="showRoom" class="lesson__auditories">
+                                <span ng-repeat="auditory in lesson.auditories" ng-click="navigate('/buildings/' + auditory.building.id + '/rooms/' + auditory.id + '/schedule')">{{auditory.name}} {{auditory.building.abbr}}<span
+                                        ng-hide="$last">, </span></span>
+                            </div>
+                            <div ng-show="showGroups" class="lesson__groups">
+                                <span ng-repeat="group in lesson.groups"  ng-click="navigate('/schedule/' + group.id)" data-id="{{group.id}}">{{group.name}}<span
+                                        ng-hide="$last">, </span></span>
+                            </div>
+                        </footer>
                     </div>
-                    {{teacher.full_name}}
-                    <footer class="lesson__footer">
-                        <div ng-show="showTeacher" class="lesson__teachers">
-                            <div ng-repeat="teacher in lesson.teachers" ng-click="navigate('/teachers/' + teacher.id)">{{teacher.full_name}}</div>
-                            <div ng-show="lesson.teachers.length == 0">&nbsp;</div>
-                        </div>
-
-                        <div ng-show="showRoom" class="lesson__auditories">
-                            <span ng-repeat="auditory in lesson.auditories" ng-click="navigate('/buildings/' + auditory.building.id + '/rooms/' + auditory.id + '/schedule')">{{auditory.name}} {{auditory.building.abbr}}<span
-                                    ng-hide="$last">, </span></span>
-                        </div>
-                        <div ng-show="showGroups" class="lesson__groups">
-                            <span ng-repeat="group in lesson.groups"  ng-click="navigate('/schedule/' + group.id)" data-id="{{group.id}}">{{group.name}}<span
-                                    ng-hide="$last">, </span></span>
-                        </div>
-                    </footer>
                 </div>
             </div>
         </div>
