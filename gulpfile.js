@@ -10,6 +10,7 @@ var gulp = require('gulp'),
 gulp.task('build', function() {
     gulp.src(
         [
+           './src/vendor/angular/angular.js',
            './src/vendor/**/*.js', '!./src/vendor/**/*.min.js',
            './src/app/js/app.js',
            './src/app/js/**/*.js',
