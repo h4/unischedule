@@ -72,11 +72,6 @@ unisheduleApp.controller('ScheduleCtrl',
                 'Доп. экзамен'
             ];
 
-            function transformDate(str) {
-                // todo: вынести в какой-то внешний сервис
-                return $filter('date')(new Date(str), 'dd.MM.yyyy');
-            }
-
             function getWeekType(week) {
                 return week.is_odd ? 'нечётная неделя' : 'чётная неделя';
             }
