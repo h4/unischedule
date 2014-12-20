@@ -17,7 +17,7 @@ gulp.task('build', function() {
            './src/app/js/config.js'
         ])
        .pipe(concat('app.js'))
-       .pipe(uglify())
+       //.pipe(uglify())
        .pipe(gulp.dest('./src/public'));
 
     gulp.src(

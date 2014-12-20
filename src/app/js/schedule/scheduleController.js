@@ -37,7 +37,14 @@ unisheduleApp.controller('ScheduleCtrl',
                     $rootScope.tabLocation = '/buildings';
                     $scope.url = APIUrls.getUrl("roomSchedule", $routeParams.id, $routeParams.room_id, $routeParams.date);
                     $scope.getTitle = function (data) {
-                        return 'Расписание аудитории ' + data.room.name;
+                        var building = '';
+
+                        if (data.room.building) {
+                            building = data.room.building.name || data.room.building.abbr || '';
+                            building = building !== '' ? ' (' + building + ')' : '';
+                        }
+
+                        return 'Расписание аудитории ' + data.room.name + building;
                     };
                     break;
                 case 'teacher':
@@ -199,7 +206,7 @@ unisheduleApp.controller('ScheduleCtrl',
                         day.date = getDayDate(data.week, day.weekday);
                     });
 
-                    $scope.title = $scope.getTitle(data) +
+                    $rootScope.subtitle = $scope.title = $scope.getTitle(data) +
                         ', ' + getWeekType(data.week);
                     $scope.colStyle = { width: Math.ceil((1 / $scope.schedule.length) * 100) + '%' };
 
