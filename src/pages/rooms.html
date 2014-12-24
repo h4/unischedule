@@ -1,6 +1,6 @@
 <div class="rooms" ng-controller="roomsController">
     <div class="rooms__grid-item" ng-repeat="room in rooms">
-        <div class="room" ng-click="navigate('/buildings/'+ building.id + '/rooms/' + room.id + '/schedule')">
+        <div class="room link" ng-click="navigate('/buildings/'+ building.id + '/rooms/' + room.id + '/schedule')">
             <div class="room__title">{{room.name}}</div>
         </div>
     </div>

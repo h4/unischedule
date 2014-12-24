@@ -7,9 +7,9 @@
 </head>
 <body ng-controller="appCtrl">
 <header class="page-header" ng-click="navigate('/')">
-    <img class="logo" src="/public/spbstu_logo.png" ng-click="navigate('/')" alt=""/>
+    <img class="logo link" src="/public/spbstu_logo.png" ng-click="navigate('/')" alt=""/>
 
-    <div class="page-header__title"><back class="back">←</back>{{ title }}</div>
+    <div class="page-header__title"><back class="back link">←</back>{{ title }}</div>
     <clock class="clock" interval="1000"></clock>
 </header>
 <section class="page-subheader" ng-show="subtitle">{{ subtitle }}</section>
@@ -18,8 +18,8 @@
 
 <footer class="page-footer">
     <nav class="page-footer__nav">
-        <div class="page-footer__nav-item" ng-class="{active: isActive('/') }" ng-click="navigate('/')">Группы</div>
-        <div class="page-footer__nav-item" ng-class="{active: isActive('/teachers') }" ng-click="navigate('/teachers')">
+        <div class="page-footer__nav-item link" ng-class="{active: isActive('/') }" ng-click="navigate('/')">Группы</div>
+        <div class="page-footer__nav-item link" ng-class="{active: isActive('/teachers') }" ng-click="navigate('/teachers')">
             Преподаватели
         </div>
     </nav>

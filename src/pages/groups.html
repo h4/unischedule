@@ -2,7 +2,7 @@
     <div class="groups__level" ng-repeat="level in levels">
         <div class="groups__level-title">{{ level.title }}</div>
         <div class="groups__level-groups">
-            <div class="group" ng-repeat="group in level.groups" ng-click="navigate('/schedule/' + group.id)">
+            <div class="group link" ng-repeat="group in level.groups" ng-click="navigate('/schedule/' + group.id)">
                 <div class="group__title">{{group.name}}</div>
             </div>
         </div>

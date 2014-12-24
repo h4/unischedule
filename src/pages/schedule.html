@@ -18,8 +18,8 @@
             <time class="time">17:00</time>
         </div>
 
-        <div class="schedule__arrow schedule__arrow_prev" ng-click="prevWeek()">Предыдущая неделя</div>
-        <div class="schedule__arrow schedule__arrow_next" ng-click="nextWeek()">Следующая неделя</div>
+        <div class="schedule__arrow schedule__arrow_prev link" ng-click="prevWeek()">Предыдущая неделя</div>
+        <div class="schedule__arrow schedule__arrow_next link" ng-click="nextWeek()">Следующая неделя</div>
 
         <div class="schedule__week">
             <div class="schedule__day" ng-hide="error" ng-repeat="day in schedule"
@@ -40,16 +40,16 @@
                         {{teacher.full_name}}
                         <footer class="lesson__footer">
                             <div ng-show="showTeacher" class="lesson__teachers">
-                                <div ng-repeat="teacher in lesson.teachers" ng-click="navigate('/teachers/' + teacher.id)">{{teacher.full_name}}</div>
+                                <div class="link" ng-repeat="teacher in lesson.teachers" ng-click="navigate('/teachers/' + teacher.id)">{{teacher.full_name}}</div>
                                 <div ng-show="lesson.teachers.length == 0">&nbsp;</div>
                             </div>
 
                             <div ng-show="showRoom" class="lesson__auditories">
-                                <span ng-repeat="auditory in lesson.auditories" ng-click="navigate('/buildings/' + auditory.building.id + '/rooms/' + auditory.id + '/schedule')">{{auditory.name}} {{auditory.building.abbr}}<span
+                                <span class="link" ng-repeat="auditory in lesson.auditories" ng-click="navigate('/buildings/' + auditory.building.id + '/rooms/' + auditory.id + '/schedule')">{{auditory.name}} {{auditory.building.abbr}}<span
                                         ng-hide="$last">, </span></span>
                             </div>
                             <div ng-show="showGroups" class="lesson__groups">
-                                <span ng-repeat="group in lesson.groups"  ng-click="navigate('/schedule/' + group.id)" data-id="{{group.id}}">{{group.name}}<span
+                                <span class="link" ng-repeat="group in lesson.groups"  ng-click="navigate('/schedule/' + group.id)" data-id="{{group.id}}">{{group.name}}<span
                                         ng-hide="$last">, </span></span>
                             </div>
                         </footer>

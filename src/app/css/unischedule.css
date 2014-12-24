@@ -19,7 +19,28 @@ body {
 }
 
 .kiosk * {
+    cursor: default;
     -moz-user-select: none;
+}
+
+.link {
+    cursor: pointer;
+    transition: color .5s, transform .5s;
+}
+
+.link:hover {
+    transform: scale(1.1);
+    color: #B71C1C;
+}
+
+.kiosk .link {
+    cursor: default;
+    transition: none;
+}
+
+.kiosk .link:hover {
+    transform: none;
+    color: inherit;
 }
 
 .page-header {

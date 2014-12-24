@@ -4,7 +4,7 @@
 <div class="search__results" ng-controller="SearchCtrl">
     <h2 class="search__result-header">Результаты поиска</h2>
 
-    <div class="search__result" ng-repeat="result in results" ng-click="navigate(result.path)"
+    <div class="search__result link" ng-repeat="result in results" ng-click="navigate(result.path)"
          ng-class="'search__result_kind_' + kind">
         <div class="search__result-title">
             {{ result.title }}
