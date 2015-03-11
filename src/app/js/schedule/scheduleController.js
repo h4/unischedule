@@ -230,7 +230,8 @@ unisheduleApp.controller('ScheduleCtrl',
                     timelineStart = new Date(timelineStart);
                     timelineEnd = new Date(timelineEnd);
 
-                    timelineStart = timelineStart.getHours() > 15 ? timelineStart : new Date(timelineStart.setHours(8, 0));
+                    // timelineStart = timelineStart.getHours() > 15 ? timelineStart : new Date(timelineStart.setHours(8, 0));
+                    timelineStart = new Date(timelineStart.setHours(8, 0));
                     timelineEnd = timelineEnd.getMinutes() === 0 ? timelineEnd : new Date(timelineEnd.setHours(timelineEnd.getHours() + 1));
 
                     $scope.timelineStart = timelineStart.getHours();
@@ -242,7 +243,6 @@ unisheduleApp.controller('ScheduleCtrl',
                     for (var h = $scope.timelineStart; h <= $scope.timelineEnd; h++) {
                         $scope.timelineHours.push(h);
                     }
-
 
                     console.log($scope.timelineStart, $scope.timelineEnd, $scope.timelineDuration);
 
