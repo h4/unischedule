@@ -6,16 +6,7 @@
         <div class="time-marker" style="top: {{time / 60 * 80 + 110}}px;" ng-show="isCurrentWeek"></div>
 
         <div class="time-column" ng-hide="error">
-            <time class="time">8:00</time>
-            <time class="time">9:00</time>
-            <time class="time">10:00</time>
-            <time class="time">11:00</time>
-            <time class="time">12:00</time>
-            <time class="time">13:00</time>
-            <time class="time">14:00</time>
-            <time class="time">15:00</time>
-            <time class="time">16:00</time>
-            <time class="time">17:00</time>
+            <time class="time" ng-repeat="hour in timelineHours">{{hour}}:00</time>
         </div>
 
         <div class="schedule__arrow schedule__arrow_prev link" ng-click="prevWeek()">Предыдущая неделя</div>
@@ -28,7 +19,7 @@
                 <h3 class="day-name">{{ days[day.weekday] }}<span
                         class="schedule__date">{{day.date | date : 'dd.MM.yyyy'}}</span></h3>
 
-                <div class="lessons">
+                <div class="lessons" ng-style="lessonsStyle">
                     <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className"
                          ng-click="checkDoubles($event)">
                         <div class="lesson__time" ng-show="lesson.showTime">{{lesson.time_start}}-{{lesson.time_end}}</div>

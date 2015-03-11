@@ -404,7 +404,7 @@ body {
 
 .lessons {
     position: relative;
-    height: 800px;
+    min-height: 800px;
 }
 
 .lesson {
@@ -476,11 +476,23 @@ body {
 }
 
 .lesson_start_8 {
-    top: 540px;
+    top: 560px;
 }
 
 .lesson_start_9 {
     top: 640px;
+}
+
+.lesson_start_10 {
+    top: 720px;
+}
+
+.lesson_start_11 {
+    top: 800px;
+}
+
+.lesson_start_12 {
+    top: 880px;
 }
 
 .lesson_duration_1 {

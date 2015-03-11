@@ -206,8 +206,50 @@ unisheduleApp.controller('ScheduleCtrl',
                         day.date = getDayDate(data.week, day.weekday);
                     });
 
+                    var timeScale = $scope.schedule
+                        .map(function(day) {
+                            return day.lessons;
+                        })
+                        .reduce(function(prev, curr) {
+                            return prev.concat(curr);
+                        }, [])
+                        .map(function(lesson) {
+                            var now = new Date(),
+                                timeStart = lesson.time_start.split(":"),
+                                timeEnd = lesson.time_end.split(":");
+
+                            return {
+                                time_start: now.setHours(timeStart[0], timeStart[1]),
+                                time_end: now.setHours(timeEnd[0], timeEnd[1])
+                            }
+                        });
+
+                    var timelineStart = Math.min.apply(Math, timeScale.map(function(item) {return item.time_start}));
+                    var timelineEnd = Math.max.apply(Math, timeScale.map(function(item) {return item.time_end}));
+
+                    timelineStart = new Date(timelineStart);
+                    timelineEnd = new Date(timelineEnd);
+
+                    timelineStart = timelineStart.getHours() > 15 ? timelineStart : new Date(timelineStart.setHours(8, 0));
+                    timelineEnd = timelineEnd.getMinutes() === 0 ? timelineEnd : new Date(timelineEnd.setHours(timelineEnd.getHours() + 1));
+
+                    $scope.timelineStart = timelineStart.getHours();
+                    $scope.timelineEnd = timelineEnd.getHours();
+                    $scope.timelineDuration = $scope.timelineEnd - $scope.timelineStart;
+
+                    $scope.timelineHours = [];
+
+                    for (var h = $scope.timelineStart; h <= $scope.timelineEnd; h++) {
+                        $scope.timelineHours.push(h);
+                    }
+
+
+                    console.log($scope.timelineStart, $scope.timelineEnd, $scope.timelineDuration);
+
                     $rootScope.subtitle = $scope.title = $scope.getTitle(data) +
                         ', ' + getWeekType(data.week);
+
+                    $scope.lessonsStyle = { 'height': $scope.timelineDuration * 80 + 'px' };
                     $scope.colStyle = { width: Math.ceil((1 / $scope.schedule.length) * 100) + '%' };
 
                     $scope.isCurrentWeek = highlightToday;
