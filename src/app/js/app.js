@@ -6,7 +6,7 @@ unisheduleApp
         function ($scope, $location, $cookies, $rootScope, $timeout) {
         var maxPageLiveTime = 3;
 
-        $scope.title = "Санкт-Петербургский государственный политехнический университет";
+        $scope.title = "Санкт-Петербургский политехнический университет Петра Великого";
 
         if ($location.search().kiosk) {
             $cookies.kiosk = $location.search().kiosk;
