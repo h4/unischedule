@@ -3,8 +3,6 @@
     <h3 class="schedule__title">{{ title }}</h3>
 
     <div class="schedule__week-wrapper">
-        <div class="time-marker" style="top: {{time / 60 * 80 + 110}}px;" ng-show="isCurrentWeek"></div>
-
         <div class="time-column" ng-hide="error">
             <time class="time" ng-repeat="hour in timelineHours">{{hour}}:00</time>
         </div>
