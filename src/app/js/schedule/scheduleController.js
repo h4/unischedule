@@ -254,6 +254,16 @@ unisheduleApp.controller('ScheduleCtrl',
                     $scope.showRoom = type !== 'room';
                     $scope.showGroups = type !== 'group';
 
+                    var buildingId = undefined;
+
+                    if ('room' in data && 'building' in data.room) {
+                        buildingId = data.room.building.id;
+                    }
+
+                    if (buildingId == 30) {
+                        $scope.showGroups = false;
+                    }
+
                     $scope.time = $scope.getTime();
                 })
                 .error(function() {
