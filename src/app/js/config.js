@@ -48,7 +48,7 @@ unisheduleApp
             });
     }])
     .config(['APIUrlsProvider', function(APIUrlsProvider) {
-        APIUrlsProvider.hostname = "ruz.spbstu.ru";
+        APIUrlsProvider.hostname = "ruz2.spbstu.ru";
         APIUrlsProvider.path = '/api/v1/ruz';
         APIUrlsProvider.port = 80;
         APIUrlsProvider.urls = {
