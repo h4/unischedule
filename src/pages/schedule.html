@@ -7,6 +7,8 @@
             <time class="time" ng-repeat="hour in timelineHours">{{hour}}:00</time>
         </div>
 
+        <div class="time-line" ng-repeat="hour in timelineHours" ng-class="'time-line_idx_' + $index"></div>
+
         <div class="schedule__arrow schedule__arrow_prev link" ng-click="prevWeek()">Предыдущая неделя</div>
         <div class="schedule__arrow schedule__arrow_next link" ng-click="nextWeek()">Следующая неделя</div>
 

@@ -285,7 +285,7 @@ body {
 .time-column {
     font-size: 13px;
     position: absolute;
-    top: 85px;
+    top: 40px;
     bottom: 0;
     right: 100%;
     margin-right: 8px;
@@ -296,7 +296,41 @@ body {
 .time {
     display: block;
     height: 80px;
-    padding-top: 25px;
+    padding-top: 12px;
+}
+
+.time-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    display: none;
+    background: #ccc;
+}
+
+.time-line_idx_2 {
+    top: 202px;
+    display: block;
+}
+
+.time-line_idx_4 {
+    top: 362px;
+    display: block;
+}
+
+.time-line_idx_6 {
+    top: 522px;
+    display: block;
+}
+
+.time-line_idx_8 {
+    top: 682px;
+    display: block;
+}
+
+.time-line_idx_10 {
+    top: 842px;
+    display: block;
 }
 
 .time-marker {
@@ -335,6 +369,10 @@ body {
     font-weight: 300;
     margin: 0 0 25px;
     text-align: center;
+}
+
+.schedule__week-wrapper {
+    position: relative;
 }
 
 .schedule__week {
