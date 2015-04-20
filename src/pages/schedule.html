@@ -36,7 +36,7 @@
                             </div>
 
                             <div ng-show="showRoom" class="lesson__auditories">
-                                <span class="link" ng-repeat="auditory in lesson.auditories" ng-click="navigate('/buildings/' + auditory.building.id + '/rooms/' + auditory.id + '/schedule')">{{auditory.name}} {{auditory.building.abbr}}<span
+                                <span class="link" ng-repeat="auditory in lesson.auditories" ng-click="navigate('/buildings/' + auditory.building.id + '/rooms/' + auditory.id + '/schedule')">{{auditory.name}}/{{auditory.building.abbr}}<span
                                         ng-hide="$last">, </span></span>
                             </div>
                             <div ng-show="showGroups" class="lesson__groups">
