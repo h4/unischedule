@@ -169,9 +169,7 @@ unisheduleApp.controller('ScheduleCtrl',
                             day.lessons.forEach(function (lesson) {
                                 var timeStart = lesson.time_start.split(":");
                                 lesson.startPosition = (timeStart[0] - 7);
-                                if (timeStart[1] !== '00') {
-                                    lesson.showTime = true;
-                                }
+
                                 lesson.duration = lesson.time_end.split(":")[0] - lesson.time_start.split(":")[0] + 1;
                                 lesson.className = 'lesson_start_' + lesson.startPosition;
                                 lesson.className += ' lesson_duration_' + lesson.duration;
@@ -243,8 +241,6 @@ unisheduleApp.controller('ScheduleCtrl',
                     for (var h = $scope.timelineStart; h <= $scope.timelineEnd; h++) {
                         $scope.timelineHours.push(h);
                     }
-
-                    console.log($scope.timelineStart, $scope.timelineEnd, $scope.timelineDuration);
 
                     $rootScope.subtitle = $scope.title = $scope.getTitle(data) +
                         ', ' + getWeekType(data.week);

@@ -22,7 +22,7 @@
                 <div class="lessons" ng-style="lessonsStyle">
                     <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className"
                          ng-click="checkDoubles($event)">
-                        <div class="lesson__time" ng-show="lesson.showTime">{{lesson.time_start}}-{{lesson.time_end}}</div>
+                        <div class="lesson__time">{{lesson.time_start}}-{{lesson.time_end}}</div>
                         <h4 class="lesson__subject">{{lesson.subject}}</h4>
 
                         <div class="lesson__type">{{ lessonTypes[lesson.type] }}<span
