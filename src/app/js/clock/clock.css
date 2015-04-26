@@ -1,8 +1,9 @@
 .clock {
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 12px;
     font-size: 20px;
+    text-align: center;
 }
 
 @-webkit-keyframes pulse {
@@ -48,4 +49,8 @@
     display: inline-block;
     width: 2em;
     text-align: left;
+}
+
+.clock__week {
+    font-size: .8em;
 }

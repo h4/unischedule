@@ -1,1 +1,4 @@
-<span class="clock__hours">{{ now | date : 'HH' }}</span><span class="clock__separator">:</span><span class="clock__minutes">{{ now | date : 'mm' }}</span>
+<div class="clock__time">
+    <span class="clock__hours">{{ now | date : 'HH' }}</span><span class="clock__separator">:</span><span class="clock__minutes">{{ now | date : 'mm' }}</span>
+</div>
+<div class="clock__week">{{ weekType }}</div>

@@ -52,6 +52,7 @@ unisheduleApp
         APIUrlsProvider.path = '/api/v1/ruz';
         APIUrlsProvider.port = 80;
         APIUrlsProvider.urls = {
+            "info": "/info",
             "faculties": "/faculties",
             "faculty": function(id) {
                 return "/faculties/" + id;
