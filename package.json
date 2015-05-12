@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/gulp build",
-    "runserver": "cd ./src && python -m SimpleHTTPServer"
+    "runserver": "cd ./src && python -m SimpleHTTPServer",
+    "postinstall": "bower update && gulp build"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
     "url": "https://github.com/h4/unischedule/issues"
   },
   "homepage": "https://github.com/h4/unischedule",
-  "devDependencies": {
+  "dependencies": {
+    "bower": "^1.4.1",
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^2.0.0",
     "gulp-concat": "^2.4.2",
