@@ -130,6 +130,17 @@ body {
     border-bottom: solid 3px #004d40;
 }
 
+.page-footer__copyright {
+    font-size: 14px;
+    padding: 3px 0 10px;
+    text-align: center;
+}
+
+.page-footer__copyright-link {
+    color: #FFF;
+    text-decoration: none;
+}
+
 .page-content {
     position: relative;
     margin: 100px;
@@ -401,7 +412,7 @@ body {
     font-weight: 400;
     position: fixed;
     z-index: 10;
-    bottom: 6px;
+    bottom: 26px;
     padding: 8px 40px 8px;
     background: #f9f9f9;
     border-bottom: solid 3px #004d40;
