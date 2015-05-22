@@ -29,6 +29,8 @@ unisheduleApp
                 return false;
             };
 
+            $rootScope.kioskMode = true;
+
             angular.element(document.body).addClass('kiosk');
 
             $rootScope.$on('$locationChangeSuccess', function () {
