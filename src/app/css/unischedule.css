@@ -43,6 +43,21 @@ body {
     color: inherit;
 }
 
+.banner {
+    font-size: 12px;
+    line-height: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 10px;
+    height: 35px;
+    text-align: center;
+    background: #900;
+    color: #FFF;
+}
+
 .page-header {
     position: fixed;
     top: 0;
@@ -55,6 +70,10 @@ body {
     color: #b2dfdb;
     border-bottom: solid 1px #26a69a;
     box-shadow: 0 2px 2px #00695c;
+}
+
+.banner + .page-header {
+    top: 35px;
 }
 
 .page-subheader {
