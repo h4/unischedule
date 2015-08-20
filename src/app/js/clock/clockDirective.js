@@ -25,7 +25,9 @@ unisheduleApp
                     $http
                         .get(APIUrls.getUrl('info'))
                         .success(function (data) {
-                            $scope.weekType = data.is_odd_week ? 'Нечётная неделя' : 'Чётная неделя';
+                            if ('is_odd_week' in data) {
+                                $scope.weekType = data.is_odd_week ? 'Нечётная неделя' : 'Чётная неделя';
+                            }
                         });
                 };
 
