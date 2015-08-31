@@ -128,6 +128,16 @@ unisheduleApp.controller('ScheduleCtrl',
                 });
             };
 
+            $scope.checkOverlaps = function (e) {
+                var elem = angular.element(e.currentTarget),
+                    lessons = elem.parent(),
+                    overlaps;
+
+                overlaps = lessons[0].querySelectorAll('.lesson_overlaps:nth-of-type(2)');
+
+                lessons.prepend(angular.element(overlaps).detach());
+            };
+
             $scope._isCurrentLesson = function(lesson) {
                 var now = new Date().getTime();
                 var lessonStartArr = lesson.time_start.split(':');
@@ -166,17 +176,42 @@ unisheduleApp.controller('ScheduleCtrl',
                             day.today = (highlightToday && todaysDay === day.weekday % 7) ?
                                 'yes' : 'no';
 
-                            day.lessons.forEach(function (lesson) {
-                                var timeStart = lesson.time_start.split(":");
+                            day.lessons.forEach(function (lesson, lessonId, lessons) {
+                                var timeStart = lesson.time_start.split(":"),
+                                    timeEnd = lesson.time_end.split(":");
                                 lesson.startPosition = (timeStart[0] - 7);
 
                                 lesson.duration = lesson.time_end.split(":")[0] - lesson.time_start.split(":")[0] + 1;
+
                                 lesson.className = 'lesson_start_' + lesson.startPosition;
                                 lesson.className += ' lesson_duration_' + lesson.duration;
                                 if (lessonsStartTimes.indexOf(lesson.time_start) != -1) {
                                     lesson.className += ' lesson_double';
                                 }
                                 lessonsStartTimes.push(lesson.time_start);
+
+                                var others = lessons.filter(function(otherLesson, otherLessonId) {
+                                    var otherTimeStart = otherLesson.time_start.split(":"),
+                                        otherTimeEnd = otherLesson.time_end.split(":");
+
+                                    if (otherLessonId === lessonId) {
+                                        return false;
+                                    }
+
+                                    if (timeStart[0] < otherTimeStart[0] && timeEnd[0] < otherTimeStart[0]) {
+                                        return false;
+                                    }
+
+                                    if (otherTimeStart[0] < timeStart[0] && otherTimeEnd[0] < timeStart[0]) {
+                                        return false;
+                                    }
+
+                                    return true;
+                                });
+
+                                if (others.length > 0) {
+                                    lesson.className += ' lesson_overlaps';
+                                }
 
                                 if (day.today == 'yes' && $scope._isCurrentLesson(lesson)) {
                                     lesson.className += ' lesson_current'
