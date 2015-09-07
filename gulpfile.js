@@ -24,7 +24,8 @@ gulp.task('build', function() {
         [
             './src/app/**/*.gif',
             './src/app/**/*.jpg',
-            './src/app/**/*.png'
+            './src/app/**/*.png',
+            './src/app/**/*.svg'
         ])
         .pipe(rename({dirname: ''}))
         .pipe(gulp.dest('./src/public'));

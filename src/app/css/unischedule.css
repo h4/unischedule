@@ -33,6 +33,10 @@ body {
     color: #B71C1C;
 }
 
+.logo.link:hover {
+    transform: none;
+}
+
 .kiosk .link {
     cursor: default;
     transition: none;
@@ -91,13 +95,12 @@ body {
     height: 80px;
     width: 80px;
     float: left;
+    padding: 2px;
     position: relative;
-    top: 10px;
+    top: 6px;
     z-index: 100;
     background: #e0f2f1;
     border: solid 2px #009688;
-    border-radius: 50%;
-    box-shadow: 0 0 4px #e0f2f1;
 }
 
 .page-header__title {
