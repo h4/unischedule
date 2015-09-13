@@ -1,8 +1,8 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp.controller('ScheduleCtrl',
-    ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$filter', 'APIUrls', 'scheduleType',
-        function ($scope, $rootScope, $http, $location, $routeParams, $filter, APIUrls, type) {
+    ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$filter', 'APIUrls', 'scheduleType', 'Schedule',
+        function ($scope, $rootScope, $http, $location, $routeParams, $filter, APIUrls, type, Schedule) {
             $scope.error = false;
             $scope.title = '';
             $scope.isCurrentWeek = false;
@@ -147,6 +147,18 @@ unisheduleApp.controller('ScheduleCtrl',
 
                 return lessonStart <= now && now <= lessonEnd;
             };
+
+            var items = Schedule.get({id: $routeParams.id})
+                .$promise
+                .then(function(data) {
+                    console.log(data);
+                });
+
+            //items.success(function(data) {
+            //    console.log(data);
+            //});
+
+            return;
 
             $http
                 .get($scope.url)
