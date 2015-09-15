@@ -1,8 +1,9 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp.controller('ScheduleCtrl',
-    ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$filter', 'APIUrls', 'scheduleType',
-        function ($scope, $rootScope, $http, $location, $routeParams, $filter, APIUrls, type) {
+    ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$filter', 'APIUrls', 'scheduleType', 'Schedule',
+        'ScheduleService',
+        function ($scope, $rootScope, $http, $location, $routeParams, $filter, APIUrls, type, Schedule, ScheduleService) {
             $scope.error = false;
             $scope.title = '';
             $scope.isCurrentWeek = false;
@@ -133,96 +134,28 @@ unisheduleApp.controller('ScheduleCtrl',
                     lessons = elem.parent(),
                     overlaps;
 
-                overlaps = lessons[0].querySelectorAll('.lesson_overlaps:nth-of-type(2)');
+                if (elem.hasClass('lesson_overlaps')) {
+                    overlaps = lessons[0].querySelectorAll('[data-overlap=' + elem.attr('data-overlap') + ']');
 
-                lessons.prepend(angular.element(overlaps).detach());
+                    angular.forEach(overlaps, function(elem) {
+                        angular.element(elem).toggleClass('lesson_overlaps_over');
+                    });
+                }
             };
 
-            $scope._isCurrentLesson = function(lesson) {
-                var now = new Date().getTime();
-                var lessonStartArr = lesson.time_start.split(':');
-                var lessonEndArr = lesson.time_end.split(':');
-                var lessonStart = new Date().setHours(lessonStartArr[0], lessonStartArr[1]);
-                var lessonEnd = new Date().setHours(lessonEndArr[0], lessonEndArr[1]);
-
-                return lessonStart <= now && now <= lessonEnd;
-            };
-
-            $http
-                .get($scope.url)
-                .success(function (data) {
+            ScheduleService
+                .getResult({id: $routeParams.id})
+                .then(function(data) {
                     var highlightToday,
                         todaysDay = new Date().getDay();
-
-                    if (data.error) {
-                        $scope.start_date = $location.search().date ?
-                            new Date($location.search().date) : new Date();
-
-                        $rootScope.subtitle = '';
-                        $scope.error = true;
-                        $scope.errorMessage = data.text;
-                        return;
-                    }
 
                     $scope.start_date = dateFromString(data.week.date_start);
 
                     $scope.error = false;
                     highlightToday = isCurrentWeek(data.week);
                     $scope.isEmpty = data.days.length === 0;
-                    $scope.schedule = data.days
-                        .map(function (day) {
-                            var lessonsStartTimes = [];
 
-                            day.today = (highlightToday && todaysDay === day.weekday % 7) ?
-                                'yes' : 'no';
-
-                            day.lessons.forEach(function (lesson, lessonId, lessons) {
-                                var timeStart = lesson.time_start.split(":"),
-                                    timeEnd = lesson.time_end.split(":");
-                                lesson.startPosition = (timeStart[0] - 7);
-
-                                lesson.duration = lesson.time_end.split(":")[0] - lesson.time_start.split(":")[0] + 1;
-
-                                lesson.className = 'lesson_start_' + lesson.startPosition;
-                                lesson.className += ' lesson_duration_' + lesson.duration;
-                                if (lessonsStartTimes.indexOf(lesson.time_start) != -1) {
-                                    lesson.className += ' lesson_double';
-                                }
-                                lessonsStartTimes.push(lesson.time_start);
-
-                                var others = lessons.filter(function(otherLesson, otherLessonId) {
-                                    var otherTimeStart = otherLesson.time_start.split(":"),
-                                        otherTimeEnd = otherLesson.time_end.split(":");
-
-                                    if (otherLessonId === lessonId) {
-                                        return false;
-                                    }
-
-                                    if (timeStart[0] < otherTimeStart[0] && timeEnd[0] < otherTimeStart[0]) {
-                                        return false;
-                                    }
-
-                                    if (otherTimeStart[0] < timeStart[0] && otherTimeEnd[0] < timeStart[0]) {
-                                        return false;
-                                    }
-
-                                    return true;
-                                });
-
-                                if (others.length > 0) {
-                                    lesson.className += ' lesson_overlaps';
-                                }
-
-                                if (day.today == 'yes' && $scope._isCurrentLesson(lesson)) {
-                                    lesson.className += ' lesson_current'
-                                }
-                            });
-
-                            return day;
-                        })
-                        .sort(function (cur, prev) {
-                            return cur.weekday - prev.weekday;
-                        });
+                    $scope.schedule = data.schedule;
 
                     for (var i = 1; i < 7; i++) {
                         if (!$scope.schedule[i - 1]) {
@@ -301,7 +234,12 @@ unisheduleApp.controller('ScheduleCtrl',
 
                     $scope.time = $scope.getTime();
                 })
-                .error(function() {
-                    $scope.navigate('/');
+                .catch(function(reason) {
+                    $scope.start_date = $location.search().date ?
+                        new Date($location.search().date) : new Date();
+
+                    $rootScope.subtitle = '';
+                    $scope.error = true;
+                    $scope.errorMessage = reason.errorMessage;
                 });
         }]);
