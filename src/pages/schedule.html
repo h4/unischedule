@@ -21,7 +21,7 @@
 
                 <div class="lessons" ng-style="lessonsStyle">
                     <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className"
-                         ng-click="checkDoubles($event); checkOverlaps($event)">
+                         ng-click="checkDoubles($event); checkOverlaps($event)" data-overlap="{{ lesson.overlapId }}">
                         <div class="lesson__time">{{lesson.time_start}}-{{lesson.time_end}}</div>
                         <h4 class="lesson__subject">{{lesson.subject}}</h4>
 

@@ -134,22 +134,16 @@ unisheduleApp.controller('ScheduleCtrl',
                     lessons = elem.parent(),
                     overlaps;
 
-                overlaps = lessons[0].querySelectorAll('.lesson_overlaps:nth-of-type(2)');
+                if (elem.hasClass('lesson_overlaps')) {
+                    overlaps = lessons[0].querySelectorAll('[data-overlap=' + elem.attr('data-overlap') + ']');
 
-                lessons.prepend(angular.element(overlaps).detach());
+                    angular.forEach(overlaps, function(elem) {
+                        angular.element(elem).toggleClass('lesson_overlaps_over');
+                    });
+                }
             };
 
-            $scope._isCurrentLesson = function(lesson) {
-                var now = new Date().getTime();
-                var lessonStartArr = lesson.time_start.split(':');
-                var lessonEndArr = lesson.time_end.split(':');
-                var lessonStart = new Date().setHours(lessonStartArr[0], lessonStartArr[1]);
-                var lessonEnd = new Date().setHours(lessonEndArr[0], lessonEndArr[1]);
-
-                return lessonStart <= now && now <= lessonEnd;
-            };
-
-            var items = ScheduleService
+            ScheduleService
                 .getResult({id: $routeParams.id})
                 .then(function(data) {
                     var highlightToday,
