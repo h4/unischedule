@@ -6,8 +6,10 @@
     <link rel="stylesheet" href="/public/app.css"/>
 </head>
 <body ng-controller="appCtrl">
-<div class="banner">
-    Расписание может измениться в течение первых двух недель учебного семестра. Следите за объявлениями.
+<div class="banner" ng-show="showMessages">
+    <div ng-repeat="message in messages">
+        <span ng-bind-html="message"></span>
+    </div>
 </div>
 <header class="page-header" ng-click="navigate('/')">
     <img class="logo link" src="/public/spbstu_logo.svg" ng-click="navigate('/')" alt=""/>

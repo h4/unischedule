@@ -62,6 +62,10 @@ body {
     color: #FFF;
 }
 
+.banner a {
+    color: #FFF;
+}
+
 .page-header {
     position: fixed;
     top: 0;
