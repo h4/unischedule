@@ -1,7 +1,7 @@
 var unisheduleApp = angular.module('unisheduleApp');
 
 unisheduleApp
-    .directive('clock', ['$compile', function ($compile) {
+    .directive('clock', ['$compile', '$rootScope', '$sce', function ($compile, $rootScope, $sce) {
         return {
             restrict: 'E',
             scope: {
@@ -25,6 +25,14 @@ unisheduleApp
                     $http
                         .get(APIUrls.getUrl('info'))
                         .success(function (data) {
+                            if ('messages' in data) {
+                                $rootScope.messages = data.messages.map(function(message) {
+                                    return $sce.trustAsHtml(message);
+                                });
+
+                                $rootScope.showMessages = Boolean(data.messages.length);
+                            }
+
                             if ('is_odd_week' in data) {
                                 $scope.weekType = data.is_odd_week ? 'Нечётная неделя' : 'Чётная неделя';
                             }

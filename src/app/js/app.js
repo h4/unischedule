@@ -43,6 +43,7 @@ unisheduleApp
             });
         }
 
+        $rootScope.showMessages = false;
 
         $scope.isActive = function (viewLocation) {
             return (viewLocation === $scope.tabLocation);

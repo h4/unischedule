@@ -62,6 +62,10 @@ body {
     color: #FFF;
 }
 
+.banner a {
+    color: #FFF;
+}
+
 .page-header {
     position: fixed;
     top: 0;
@@ -572,6 +576,18 @@ body {
 
 .lesson_start_12 {
     top: 880px;
+}
+
+.lesson_start_13 {
+    top: 960px;
+}
+
+.lesson_start_14 {
+    top: 1040px;
+}
+
+.lesson_start_15 {
+    top: 1120px;
 }
 
 .lesson_duration_1 {
