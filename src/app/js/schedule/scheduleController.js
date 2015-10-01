@@ -198,11 +198,11 @@ unisheduleApp.controller('ScheduleCtrl',
                                         return false;
                                     }
 
-                                    if (timeStart[0] < otherTimeStart[0] && timeEnd[0] < otherTimeStart[0]) {
+                                    if (timeStart.join('') < otherTimeStart.join('') && timeEnd.join('') < otherTimeStart.join('')) {
                                         return false;
                                     }
 
-                                    if (otherTimeStart[0] < timeStart[0] && otherTimeEnd[0] < timeStart[0]) {
+                                    if (otherTimeStart.join('') < timeStart.join('') && otherTimeEnd.join('') < timeStart.join('')) {
                                         return false;
                                     }
 
