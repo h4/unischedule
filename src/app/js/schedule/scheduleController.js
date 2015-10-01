@@ -285,9 +285,7 @@ unisheduleApp.controller('ScheduleCtrl',
 
                     $scope.isCurrentWeek = highlightToday;
 
-                    $scope.showTeacher = type !== 'teacher';
-                    $scope.showRoom = type !== 'room';
-                    $scope.showGroups = type !== 'group';
+                    $scope.scheduleType = type;
 
                     var buildingId = undefined;
 

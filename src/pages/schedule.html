@@ -20,31 +20,16 @@
                         class="schedule__date">{{day.date | date : 'dd.MM.yyyy'}}</span></h3>
 
                 <div class="lessons" ng-style="lessonsStyle">
-                    <div class="lesson" ng-repeat="lesson in day.lessons" ng-class="lesson.className"
-                         ng-click="checkDoubles($event); checkOverlaps($event)">
-                        <div class="lesson__time">{{lesson.time_start}}-{{lesson.time_end}}</div>
-                        <h4 class="lesson__subject">{{lesson.subject}}</h4>
-
-                        <div class="lesson__type">{{ lessonTypes[lesson.type] }}<span
-                                ng-show="lesson.additional_info">, </span>{{ lesson.additional_info }}
-                        </div>
-                        {{teacher.full_name}}
-                        <footer class="lesson__footer">
-                            <div ng-show="showTeacher" class="lesson__teachers">
-                                <div class="link" ng-repeat="teacher in lesson.teachers" ng-click="navigate('/teachers/' + teacher.id)">{{teacher.full_name}}</div>
-                                <div ng-show="lesson.teachers.length == 0">&nbsp;</div>
-                            </div>
-
-                            <div ng-show="showRoom" class="lesson__auditories">
-                                <span class="link" ng-repeat="auditory in lesson.auditories" ng-click="navigate('/buildings/' + auditory.building.id + '/rooms/' + auditory.id + '/schedule')">{{auditory.name}}/{{auditory.building.abbr}}<span
-                                        ng-hide="$last">, </span></span>
-                            </div>
-                            <div ng-show="showGroups" class="lesson__groups">
-                                <span class="link" ng-repeat="group in lesson.groups"  ng-click="navigate('/schedule/' + group.id)" data-id="{{group.id}}">{{group.name}}<span
-                                        ng-hide="$last">, </span></span>
-                            </div>
-                        </footer>
-                    </div>
+                    <lesson class="lesson"
+                            ng-repeat="lesson in day.lessons"
+                            ng-class="lesson.className"
+                            ng-click="checkDoubles($event); checkOverlaps($event)"
+                            lesson="lesson"
+                            scheduleType="scheduleType"
+                            hourScale="80"
+                            dayStart="8"
+                            gap="8"
+                            ></lesson>
                 </div>
             </div>
         </div>
