@@ -24,6 +24,7 @@ unisheduleApp
                         top = (timeToNumber($scope.lesson.time_start) - $scope.dayStart) * $scope.hourScale;
 
                     $element.css('height', height + 'px');
+                    $element.css('min-height', height + 'px');
                     $element.css('top', top + 'px');
 
                     $scope.showTeacher = $scope.scheduleType !== 'teacher';

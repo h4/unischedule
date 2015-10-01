@@ -1,0 +1,262 @@
+
+.lesson {
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    height: 152px;
+    padding: 16px;
+    overflow: hidden;
+    background: #b2dfdb;
+    border-radius: 2px;
+    transition-property: right, box-shadow, margin-left, margin-top, z-index;
+    transition-duration: 1s;
+}
+
+.lesson_current {
+    padding: 14px;
+    border: solid 2px #00695c;
+}
+
+.lesson_current::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background: #C00;
+    -webkit-animation: pulse 2s infinite;
+    -moz-animation: pulse 2s infinite;
+    animation: pulse 2s infinite;
+}
+
+.lesson_double {
+    margin-left: 40px;
+    margin-top: 20px;
+    right: -10px;
+    z-index: 1;
+    box-shadow: 0 0 20px #ababab;
+}
+
+.lesson_overlaps:nth-of-type(2) {
+    margin-left: 40px;
+    margin-top: 20px;
+    right: -10px;
+    z-index: 1;
+    box-shadow: 0 0 20px #ababab;
+}
+
+.lesson_start_1 {
+    top: 0;
+}
+
+.lesson_start_2 {
+    top: 80px;
+}
+
+.lesson_start_3 {
+    top: 160px;
+}
+
+.lesson_start_4 {
+    top: 240px;
+}
+
+.lesson_start_5 {
+    top: 320px;
+}
+
+.lesson_start_6 {
+    top: 400px;
+}
+
+.lesson_start_7 {
+    top: 480px;
+}
+
+.lesson_start_8 {
+    top: 560px;
+}
+
+.lesson_start_9 {
+    top: 640px;
+}
+
+.lesson_start_10 {
+    top: 720px;
+}
+
+.lesson_start_11 {
+    top: 800px;
+}
+
+.lesson_start_12 {
+    top: 880px;
+}
+
+.lesson_duration_1 {
+    height: 72px;
+    padding: 8px 16px;
+}
+
+.lesson_duration_1 .lesson__subject {
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lesson_duration_1 .lesson__footer {
+    font-size: 12px;
+    padding: 4px 16px;
+    min-height: 0;
+}
+
+.lesson_duration_1 .lesson__teachers {
+    float: left;
+    width: 60%;
+}
+
+.lesson_duration_1 .lesson__auditories {
+    float: right;
+    width: 40%;
+}
+
+.lesson_duration_2 {
+    height: 152px;
+}
+
+.lesson_duration_3 {
+    height: 232px;
+}
+
+.lesson_duration_4 {
+    height: 312px;
+}
+
+.lesson_duration_5 {
+    height: 392px;
+}
+
+.lesson_duration_6 {
+    height: 476px;
+}
+
+.lesson_duration_7 {
+    height: 552px;
+}
+
+.lesson_duration_8 {
+    height: 632px;
+}
+
+.lesson_duration_9 {
+    height: 712px;
+}
+
+.lesson_duration_10 {
+    height: 792px;
+}
+
+.lesson__subject {
+    line-height: 1.2;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.lesson__type {
+    font-size: 12px;
+}
+
+.lesson__time {
+    font-size: 11px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    letter-spacing: .5px;
+    padding: 4px 4px;
+    color: #000;
+}
+
+.lesson__footer {
+    font-size: 13px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 54px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, .5);
+}
+
+.lesson__auditories {
+    text-align: right;
+}
+
+.lesson__groups {
+    text-align: right;
+    color: #999;
+}
+
+@media screen and (max-width: 1400px) {
+    .lesson {
+        padding: 4px;
+        overflow: hidden;
+    }
+
+    .lesson:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: #b2dfdb;
+    }
+
+    .lesson:hover {
+        height: auto !important;
+        overflow: auto;
+    }
+
+    .lesson__time {
+        float: right;
+        position: static;
+        margin-left: 5px;
+        padding: 0;
+    }
+
+    .lesson__subject {
+        font-size: 14px;
+        line-height: 1;
+        margin-bottom: 3px;
+    }
+
+    .lesson__footer {
+        font-size: 12px;
+        position: static;
+        height: auto;
+        margin-top: 8px;
+        padding: 4px 0 0;
+        background: none;
+        border-top: solid 1px rgba(255, 255, 255, .5);
+    }
+
+    .lesson .link:hover {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    .lesson__auditories,
+    .lesson__teachers {
+        margin-bottom: 4px;
+    }
+
+    .lesson__auditories {
+        font-style: italic;
+        text-align: left;
+        color: #000;
+    }
+}
