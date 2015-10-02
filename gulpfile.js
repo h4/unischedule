@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     autoprefixer = require('gulp-autoprefixer'),
     rename = require('gulp-rename'),
+    replace = require('gulp-replace'),
     csso = require('gulp-csso');
 
 gulp.task('build', function() {
@@ -47,4 +48,12 @@ gulp.task('build', function() {
         .pipe(autoprefixer())
         .pipe(csso())
         .pipe(gulp.dest('./src/public'));
+
+    gulp.src(
+        [
+            './src/index.tpl.html'
+        ])
+        .pipe(replace('%VERSION%', (new Date()).getTime()))
+        .pipe(concat('index.html'))
+        .pipe(gulp.dest('./src/'));
 });
