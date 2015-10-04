@@ -130,12 +130,15 @@ unisheduleApp.controller('ScheduleCtrl',
 
             $scope.checkOverlaps = function (e) {
                 var elem = angular.element(e.currentTarget),
+                    overlapId = elem.attr('data-overlap'),
                     lessons = elem.parent(),
                     overlaps;
 
-                overlaps = lessons[0].querySelectorAll('.lesson_overlaps:nth-of-type(2)');
+                overlaps = lessons[0].querySelectorAll('.lesson_overlaps[data-overlap="' + overlapId + '"]');
 
-                lessons.prepend(angular.element(overlaps).detach());
+                angular.forEach(overlaps, function (elem) {
+                    angular.element(elem).toggleClass('lesson_overlaps-active');
+                });
             };
 
             $scope._isCurrentLesson = function(lesson) {
@@ -171,14 +174,32 @@ unisheduleApp.controller('ScheduleCtrl',
                     $scope.isEmpty = data.days.length === 0;
                     $scope.schedule = data.days
                         .map(function (day) {
-                            var lessonsStartTimes = [];
+                            var lessonsStartTimes = [],
+                                overlaps = {};
 
                             day.today = (highlightToday && todaysDay === day.weekday % 7) ?
                                 'yes' : 'no';
 
+                            day.lessons = day.lessons
+                                .map(function(lesson, idx) {
+                                    lesson.idx = idx;
+
+                                    return lesson;
+                                })
+                                .sort(function(lesson1, lesson2) {
+                                    if (lesson1.time_start < lesson2.time_start) {
+                                        return -1;
+                                    }
+                                    if (lesson1.time_start > lesson2.time_start) {
+                                        return 1;
+                                    }
+                                    return 0;
+                                });
+
                             day.lessons.forEach(function (lesson, lessonId, lessons) {
                                 var timeStart = lesson.time_start.split(":"),
                                     timeEnd = lesson.time_end.split(":");
+
                                 lesson.startPosition = (timeStart[0] - 7);
 
                                 lesson.duration = lesson.time_end.split(":")[0] - lesson.time_start.split(":")[0] + 1;
@@ -194,28 +215,38 @@ unisheduleApp.controller('ScheduleCtrl',
                                     var otherTimeStart = otherLesson.time_start.split(":"),
                                         otherTimeEnd = otherLesson.time_end.split(":");
 
-                                    if (otherLessonId === lessonId) {
+                                    if (otherLessonId <= lessonId) {
                                         return false;
                                     }
 
-                                    if (timeStart.join('') < otherTimeStart.join('') && timeEnd.join('') <= otherTimeStart.join('')) {
+                                    if (timeStart.join('') == otherTimeStart.join('') && timeEnd.join('') == otherTimeEnd.join('')) {
                                         return false;
                                     }
 
-                                    if (otherTimeStart.join('') < timeStart.join('') && otherTimeEnd.join('') <= timeStart.join('')) {
-                                        return false;
-                                    }
-
-                                    return true;
+                                    return timeStart.join('') <= otherTimeStart.join('') && timeEnd.join('') > otherTimeStart.join('');
                                 });
 
                                 if (others.length > 0) {
-                                    lesson.className += ' lesson_overlaps';
+                                    overlaps[lessonId] = [lessonId].concat(others.map(function(lesson) {
+                                        return lesson.idx;
+                                    }));
+                                    lesson.className += ' lesson_overlaps lesson_overlaps-active';
                                 }
 
                                 if (day.today == 'yes' && $scope._isCurrentLesson(lesson)) {
                                     lesson.className += ' lesson_current'
                                 }
+                            });
+
+                            day.lessons.map(function(lesson) {
+                                for (var key in overlaps) {
+                                    if (overlaps[key].indexOf(lesson.idx) !== -1) {
+                                        lesson.className += ' lesson_overlaps';
+                                        lesson.overlapId = key;
+                                    }
+                                }
+
+                                return lesson;
                             });
 
                             return day;
