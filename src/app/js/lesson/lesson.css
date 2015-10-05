@@ -9,7 +9,7 @@
     background: #c9e9e6;
     border: solid 1px #b2dfdb;
     border-radius: 2px;
-    transition-property: right, box-shadow, margin-left, margin-top, z-index;
+    transition-property: background, right, box-shadow, margin-left, margin-top, z-index;
     transition-duration: 1s;
 }
 
@@ -24,6 +24,7 @@
     position: absolute;
     left: 0;
     right: 0;
+    bottom: 0;
     height: 4px;
     background: inherit;
 }
@@ -35,6 +36,12 @@
 .lesson:hover {
     height: auto !important;
     overflow: auto;
+    z-index: 100;
+    background: #d7f8f5;
+}
+
+.lesson:hover:after {
+    content: none;
 }
 
 .lesson_current {
@@ -130,28 +137,31 @@
 
 .lesson_duration_1 {
     height: 72px;
+}
+
+.kiosk .lesson_duration_1 {
     padding: 8px 16px;
 }
 
-.lesson_duration_1 .lesson__subject {
+.kiosk .lesson_duration_1 .lesson__subject {
     font-size: 13px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.lesson_duration_1 .lesson__footer {
+.kiosk .lesson_duration_1 .lesson__footer {
     font-size: 12px;
     padding: 4px 16px;
     min-height: 0;
 }
 
-.lesson_duration_1 .lesson__teachers {
+.kiosk .lesson_duration_1 .lesson__teachers {
     float: left;
     width: 60%;
 }
 
-.lesson_duration_1 .lesson__auditories {
+.kiosk .lesson_duration_1 .lesson__auditories {
     float: right;
     width: 40%;
 }
