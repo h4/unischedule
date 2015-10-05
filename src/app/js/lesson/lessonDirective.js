@@ -11,6 +11,7 @@ unisheduleApp
         return {
             restrict: 'E',
             scope: {
+                navigate: '=',
                 lesson: '=lesson',
                 scheduleType: '=scheduletype',
                 hourScale: '=hourscale',
